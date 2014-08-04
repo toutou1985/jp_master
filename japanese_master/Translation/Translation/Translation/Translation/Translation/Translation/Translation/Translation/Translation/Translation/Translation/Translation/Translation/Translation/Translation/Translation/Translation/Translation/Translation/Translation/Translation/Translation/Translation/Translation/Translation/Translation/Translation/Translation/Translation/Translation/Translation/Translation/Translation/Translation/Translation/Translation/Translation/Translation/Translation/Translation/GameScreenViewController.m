@@ -1,0 +1,710 @@
+//
+//  GameScreenViewController.m
+//  Translation
+//
+//  Created by monst on 13-12-16.
+//  Copyright (c) 2013年 monstar. All rights reserved.
+//
+
+#import "GameScreenViewController.h"
+#import "Config.h"
+#import "Tools.h"
+
+@interface GameScreenViewController ()
+{
+    NSInteger col;
+    NSInteger row;
+    NSInteger timerCount;
+    NSTimer   *keyBordTimer;
+    NSMutableArray *taskArr;
+    NSInteger wordOrder;
+    NSMutableArray *inputArr;
+    NSMutableDictionary *keyBordTextDic;
+}
+
+@property (nonatomic, strong) UILabel *chinaeseLabel;
+@property (nonatomic, strong) UILabel *japaneseLabel;
+@property (nonatomic, strong) UIView *keyBordView;
+@property (nonatomic, strong) UIButton *noteBtn;
+@property (nonatomic, strong) UIButton *nextBtn;
+@property (nonatomic, strong) UIView   *inputView;
+
+@end
+
+@implementation GameScreenViewController
+@synthesize chinaeseLabel;
+@synthesize japaneseLabel;
+@synthesize keyBordView;
+@synthesize points;
+@synthesize task;
+@synthesize noteBtn;
+@synthesize nextBtn;
+@synthesize inputView;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self configKeyBord];
+}
+
+- (void)configKeyBord
+{
+    col = -1;
+    row = 0;
+    timerCount = 0;
+    
+    self.noteBtn.enabled = NO;
+    self.nextBtn.enabled = NO;
+//    self.japaneseLabel.text = @"";
+    
+    if (self.keyBordView)
+    {
+        [self.keyBordView removeFromSuperview];
+        self.keyBordView = nil;
+        
+        [self.inputView removeFromSuperview];
+        self.inputView = nil;
+    }
+    
+    [self configKeyBordText];
+    
+    self.keyBordView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) - 200, 320, 200)];
+    self.keyBordView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.keyBordView];
+    
+    keyBordTimer = [NSTimer scheduledTimerWithTimeInterval:0.15
+                                                    target:self
+                                                  selector:@selector(keyBordAnimation)
+                                                  userInfo:nil
+                                                   repeats:YES];
+}
+
+- (void)keyBordAnimation
+{
+    timerCount++;
+    
+    col++;
+    
+    if (col == 6)
+    {
+        row++;
+    }
+    
+    col = col > 5 ? 0 : col;
+    
+    if (row > 2)
+    {
+        [keyBordTimer invalidate];
+        
+        [UIView animateWithDuration:0.2f
+                         animations:^{
+                             
+                             CGRect frame = keyBordView.frame;
+                             frame.origin.y += 20.0f;
+                             keyBordView.frame = frame;
+                         }
+                        completion:^(BOOL finished) {
+                        
+                            if (finished)
+                            {
+                                self.noteBtn.enabled = YES;
+                                self.nextBtn.enabled = YES;
+                            }
+                        }];
+        return;
+    }
+    
+    self.chinaeseLabel.text = keyBordTextDic[PIAN_JIA_MIN_KEY];
+    
+    UIImageView *tapIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part7_2"]];
+    tapIV.frame = CGRectMake(2 + 52 * col, (CGRectGetHeight(self.keyBordView.frame) - 185) + row * 52, 50, 50);
+    
+    UILabel *tapLable = [[UILabel alloc]init];
+    tapLable.backgroundColor = [UIColor clearColor];
+    tapLable.text = (keyBordTextDic[SINGLE_WORD_KEY])[timerCount];
+    tapLable.textAlignment = NSTextAlignmentCenter;
+    tapLable.frame = tapIV.bounds;
+    [tapIV addSubview:tapLable];
+    
+    tapIV.userInteractionEnabled = YES;
+    tapIV.tag = timerCount;
+    UITapGestureRecognizer *tapIVGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(keyBordTap:)];
+    tapIVGesture.delegate = self;
+    [tapIV addGestureRecognizer:tapIVGesture];
+    
+    [UIView animateWithDuration:0.1f
+                     animations:^{
+                        
+                         tapIV.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+                         tapLable.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+                     }];
+    
+    [self.keyBordView addSubview:tapIV];
+}
+
+- (void)keyBordTap:(UITapGestureRecognizer *)sender
+{
+    UIImageView *temp = (UIImageView *)(sender.view);
+    
+    [UIView animateWithDuration:0.1f
+                     animations:^{
+                        
+                         temp.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+                         temp.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+                     }];
+    
+    if (![inputArr containsObject:@" "])
+    {
+        return;
+    }
+    
+    NSInteger tIndex = [inputArr indexOfObject:@" "];
+    [inputArr replaceObjectAtIndex:tIndex withObject:keyBordTextDic[SINGLE_WORD_KEY][temp.tag]];
+    
+    NSLog(@"tapiv:%@",keyBordTextDic[PING_JIA_MIN_KEY]);
+    
+    UILabel *tempLable = (UILabel *)[self.view viewWithTag:INPUT_FILED_BASE_TAG + tIndex];
+    tempLable.text = keyBordTextDic[SINGLE_WORD_KEY][temp.tag];
+    
+    NSLog(@"tempstr:%@", tempLable.text);
+    
+    NSString *tInputString = [inputArr componentsJoinedByString:@""];
+    tInputString = [tInputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSLog(@"nest:%@", tInputString);
+    
+    UIImageView *wrongIV = nil;
+    
+    if ([tInputString isEqualToString:keyBordTextDic[PING_JIA_MIN_KEY]])
+    {//right
+        for (NSMutableDictionary *tDic in taskArr)
+        {
+            if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
+            {
+                tDic[WORD_IS_COMPLETE_KEY] = @YES;
+                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
+                
+                break;
+            }
+        }
+        
+        if ([self taskIsCompleted])
+        {
+            NSLog(@"win");
+//            UIAlertView *nextAlerView = [[UIAlertView alloc]initWithTitle:@"要还是不要" message:@"这关已戳完，进入下关否？" delegate:self cancelButtonTitle:@"要" otherButtonTitles:@"不要", nil];
+//            nextAlerView.tag = NEXT_POINTS_ALTERVIEW_TAG;
+//            nextAlerView.delegate = self;
+//            [nextAlerView show];
+            
+            noteBtn.enabled = NO;
+            nextBtn.enabled = NO;
+            
+            UIImageView *completedIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part6_1"]];
+            completedIV.frame = CGRectMake(50, CGRectGetMidY(self.view.frame), 5, 5);
+            completedIV.backgroundColor = [UIColor clearColor];
+            completedIV.center = self.view.center;
+            [self.view addSubview:completedIV];
+            
+            [UIView animateWithDuration:0.1f
+                             animations:^{
+                                
+                                 completedIV.transform = CGAffineTransformMakeScale(30, 30);
+                             }
+                             completion:^(BOOL finished) {
+                             
+                                 if (finished)
+                                 {
+//                                     [self.navigationController popViewControllerAnimated:YES];
+                                 }
+                             }];
+            
+            
+            return;
+        }
+        
+        [self performSelector:@selector(configKeyBord) withObject:nil afterDelay:0.2f];
+        NSLog(@"task:%@", taskArr);
+    }
+    else
+    {
+        if (![inputArr containsObject:@" "])//wrong count
+        {
+            NSLog(@"wrong");
+            
+            wrongIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part6_2"]];
+            wrongIV.frame = CGRectMake(0, 0, 80, 80);
+            wrongIV.center = self.view.center;
+            wrongIV.backgroundColor = [UIColor clearColor];
+            [self.view addSubview:wrongIV];
+            
+            CAKeyframeAnimation *frameAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+            frameAnimation.values = @[@1, @1.3, @1, @1.3, @1];
+            frameAnimation.duration = 1.0f;
+            frameAnimation.removedOnCompletion = YES;
+            frameAnimation.fillMode = kCAFillModeForwards;
+            [wrongIV.layer addAnimation:frameAnimation forKey:@"scale"];
+            
+            for (NSMutableDictionary *tDic in taskArr)
+            {
+                if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
+                {
+                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
+                    break;
+                }
+            }
+            NSLog(@"wrong:%@", taskArr);
+        }
+    }
+    
+    if (wrongIV)
+    {
+        [UIView animateWithDuration:2.0f
+                         animations:^{
+                             
+                             wrongIV.alpha = 0.0f;
+                             
+                         }completion:^(BOOL finished) {
+                             
+                             if (finished)
+                             {
+                                 [wrongIV removeFromSuperview];
+                             }
+                         }];
+    }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+//    NSArray *tArr = @[@"あ", @"い", @"う", @"え", @"お", @"か", @"き", @"く", @"け", @"こ", @"さ", @"し", @"す", @"せ", @"そ", @"た", @"ち", @"つ", @"て", @"と", @"な", @"に", @"ぬ", @"ね", @"の", @"は", @"ひ", @"ふ", @"へ", @"ほ", @"ま", @"み", @"む", @"め", @"も", @"や", @"ゆ", @"よ", @"ら", @"り", @"る", @"れ", @"ろ", @"わ", @"を", @"ん"];
+	// Do any additional setup after loading the view.
+    [self loadDataFromDB];
+    [self setupView];
+    wordOrder = 0;
+}
+
+- (void)configKeyBordText
+{
+//    NSString *tOrder = [NSString stringWithFormat:@"%d", wordOrder];
+    
+    keyBordTextDic = nil;
+    keyBordTextDic = [NSMutableDictionary dictionary];
+    NSMutableArray *tempArr = [NSMutableArray array];
+    
+    for (NSInteger i = 0; i < taskArr.count; i++)
+    {
+        NSMutableDictionary *tDic = taskArr[i];
+        
+        if (![tDic[WORD_IS_COMPLETE_KEY] boolValue])
+        {
+            [tempArr addObject:tDic];
+        }
+    }
+    
+    if (tempArr.count == 0)
+    {
+        return;
+    }
+    
+//    NSLog(@"temp:%@", tempArr);
+    
+    wordOrder++;
+    
+    wordOrder = wordOrder > tempArr.count - 1 ? 0 : wordOrder;
+    
+    NSMutableDictionary *tDic = tempArr[wordOrder];
+    NSString *pingJiaMing = tDic[PING_JIA_MIN_KEY];
+    NSArray *tSingleArr = [[self randomString:pingJiaMing] allObjects];
+    
+    keyBordTextDic[WORD_ID_KEY] = tDic[WORD_ID_KEY];
+    keyBordTextDic[SINGLE_WORD_KEY] = tSingleArr;
+    keyBordTextDic[PIAN_JIA_MIN_KEY] = tDic[PIAN_JIA_MIN_KEY];
+    keyBordTextDic[PING_JIA_MIN_KEY]  = tDic[PING_JIA_MIN_KEY];
+    
+    [self configInputField:pingJiaMing.length];
+    
+    for (NSString *t in tSingleArr)
+    {
+                NSLog(@"t:%@", t);
+    }
+}
+
+- (void)configInputField:(NSInteger)theCount
+{
+    self.inputView = [[UIView alloc]init];
+    self.inputView.frame = CGRectMake(30, 150, 260, 100);
+    self.inputView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.inputView];
+    
+    inputArr = [NSMutableArray array];
+    
+    for (NSInteger i = 0; i < theCount; i++)
+    {
+        [inputArr addObject:@" "];
+    }
+    
+    CGFloat rate = 260 / theCount - 40;
+    
+    for (NSInteger i = 0; i < theCount; i++)
+    {
+        UILabel *tempLable = [[UILabel alloc]initWithFrame:CGRectMake(i * 55 + rate, 0, 40, 40)];
+        tempLable.backgroundColor = [UIColor whiteColor];
+        tempLable.textColor = [UIColor blackColor];
+        tempLable.textAlignment = NSTextAlignmentCenter;
+        tempLable.tag = INPUT_FILED_BASE_TAG + i;
+        tempLable.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *inputCancelGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(inputCancelGesture:)];
+        
+        [tempLable addGestureRecognizer:inputCancelGesture];
+        [self.inputView addSubview:tempLable];
+    }
+}
+
+- (void)inputCancelGesture:(UITapGestureRecognizer *)sender
+{
+    UILabel *tempLable = (UILabel *)(sender.view);
+    NSLog(@"label.tag:%d", tempLable.tag);
+    if (!tempLable.text || [tempLable.text isEqualToString:@""])
+    {
+        return;
+    }
+    
+    NSInteger idx = tempLable.tag - INPUT_FILED_BASE_TAG;
+    
+    [inputArr replaceObjectAtIndex:idx withObject:@" "];
+    tempLable.text = @"";
+}
+
+- (NSMutableSet *)randomString:(NSString *)theStr
+{
+    NSMutableSet *temp = [NSMutableSet set];
+    NSInteger pingJiaMingCount = SPELL_LIST.length;
+    
+    for (NSInteger n = 0; n < theStr.length; n++)
+    {
+        id obj = [theStr substringWithRange:NSMakeRange(n, 1)];
+        [temp addObject:obj];
+        NSLog(@"thestr:%@", obj);
+    }
+    
+    NSInteger randomCount = 0;
+    do
+    {
+        NSInteger j = arc4random() % pingJiaMingCount;
+        NSString *obj = [SPELL_LIST substringWithRange:NSMakeRange(j, 1)];
+        
+        
+        if (![temp containsObject:obj] && ![theStr containtObject:obj])
+        {
+            randomCount++;
+            [temp addObject:obj];
+        }
+    }
+    while (randomCount < 16);
+    
+    
+    return temp;
+}
+
+- (void)loadDataFromDB
+{
+    taskArr = [NSMutableArray array];
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
+    
+    NSString *tSQL = @"SELECT w.id as id, w.kanji as kanji, w.kana as kana, w.chinese_means as chinese_means, gr.wrong_num as wrong_num, gr.right_num as right_num FROM word w left join game_result gr on w.id = gr.word_id where w.level_id = ? and w.mission_id = ? and gr.complete_status = 0";
+    NSString *tSelectWordStatusSQL = @"select game_status from level where mission_id = ? and level_no = ?";
+    NSString *tUpdateWordStatusSQL = @"update game_result set complete_status = 0 where (select id from word where mission_id = ? and level_id = ?) = word_id";
+    NSString *tUpdateGameStatusSQL = @"update level set game_status = 0 where mission_id = ? and level_no = ?";
+    
+    if (![fmdb open])
+    {
+        NSLog(@"open db lose in game points");
+    }
+    
+    FMResultSet *wordStatusSet = [fmdb executeQuery:tSelectWordStatusSQL withArgumentsInArray:@[self.points, self.task]];
+    
+    if ([wordStatusSet next])
+    {
+        NSString *wordStatus = [wordStatusSet stringForColumn:@"game_status"];
+        
+        if ([wordStatus boolValue])
+        {
+            if (![fmdb executeUpdate:tUpdateWordStatusSQL withArgumentsInArray:@[self.points, self.task]])
+            {
+                NSLog(@"update word status lose where game status = 1");
+            }
+            
+//            if (![fmdb executeUpdate:tUpdateGameStatusSQL withArgumentsInArray:@[self.points, self.task]])
+//            {
+//                NSLog(@"update game status lose where game status = 1");
+//            }
+        }
+    }
+    
+    
+    FMResultSet *set = [fmdb executeQuery:tSQL withArgumentsInArray:@[self.points, self.task]];
+    
+    while ([set next])
+    {
+        NSMutableDictionary *tDic = [NSMutableDictionary dictionary];
+        
+        NSString *tWordID = [set stringForColumn:@"id"];
+        NSString *tPianJiaMin = [set stringForColumn:@"kanji"];
+        NSString *tPingJiaMin = [set stringForColumn:@"kana"];
+        NSString *tChinese = [set stringForColumn:@"chinese_means"];
+        NSString *tWrongSum = [set stringForColumn:@"wrong_num"];
+        NSString *tRightSum = [set stringForColumn:@"right_num"];
+        
+        tDic[WORD_ID_KEY] = tWordID;
+        tDic[PIAN_JIA_MIN_KEY] = tPianJiaMin;
+        tDic[PING_JIA_MIN_KEY] = tPingJiaMin;
+        tDic[CHINESE_MENNS_KEY] = tChinese;
+        tDic[WORD_IS_COMPLETE_KEY] = @NO;
+        tDic[WORD_WRONG_SUM_KEY] = tWrongSum;
+        tDic[WORD_RIGHT_SUM_KEY] = tRightSum;
+        
+        [taskArr addObject:tDic];
+    }
+    
+    [fmdb close];
+}
+
+- (void)setupView
+{
+    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part_c_1"]];
+    [self.view addSubview:bgIV];
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.tag = GAME_SCREEN_BACK_BTN_TAG;
+    [backBtn setTitle:@"<" forState:UIControlStateNormal];
+    backBtn.frame = CGRectMake(0, 20, 40, 40);
+    [backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
+    
+    self.noteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.noteBtn.tag = NOTE_BTN_TAG;
+    [self.noteBtn setTitle:@"note" forState:UIControlStateNormal];
+    [self.noteBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
+    self.noteBtn.frame = CGRectMake(60, 20, 100, 40);
+    [self.noteBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.noteBtn];
+    
+    self.nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.nextBtn.tag = NEXT_BTN_TAG;
+    [self.nextBtn setTitle:@"next" forState:UIControlStateNormal];
+    [self.nextBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
+    self.nextBtn.frame = CGRectMake(200, 20, 100, 40);
+    [self.nextBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.nextBtn];
+    
+    self.chinaeseLabel = [[UILabel alloc]init];
+    self.chinaeseLabel.frame = CGRectMake(70, 100, 180, 50);
+    self.chinaeseLabel.backgroundColor = [UIColor purpleColor];
+    self.chinaeseLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.chinaeseLabel.textAlignment = NSTextAlignmentCenter;
+    self.chinaeseLabel.textColor = [UIColor whiteColor];
+    self.chinaeseLabel.numberOfLines = 0;
+    [self.view addSubview:self.chinaeseLabel];
+    
+    self.japaneseLabel = [[UILabel alloc]init];
+    self.japaneseLabel.frame = CGRectMake(70, 150, 180, 80);
+    self.japaneseLabel.backgroundColor = [UIColor orangeColor];
+    self.japaneseLabel.font = [UIFont systemFontOfSize:25.f];
+    self.japaneseLabel.text = @"";
+    self.japaneseLabel.textColor = [UIColor whiteColor];
+//    [self.view addSubview:self.japaneseLabel];
+}
+
+- (void)saveScheduleToDB
+{
+    BOOL isCompleted = [self taskIsCompleted];
+    
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
+    
+    NSString *tUpdateLevelSQL = @"update level set game_status = ?, game_word_id = ? where mission_id = ? and level_no = ?";
+    NSString *tUpdateGameResultSQL = @"update game_result set wrong_num = ?, right_num = ?, complete_status = ? where word_id = ?";
+    
+    if (![fmdb open])
+    {
+        NSLog(@"save schedule to db lose");
+    }
+    
+    [fmdb beginTransaction];
+    BOOL isRollBack = NO;
+    
+    @try
+    {
+        for (NSMutableDictionary *tDic in taskArr)
+        {
+            NSString *tWrongSum = tDic[WORD_WRONG_SUM_KEY];
+            NSString *tRightSum = tDic[WORD_RIGHT_SUM_KEY];
+            NSString *tWordID = tDic[WORD_ID_KEY];
+            NSString *tWordIsComplete = tDic[WORD_IS_COMPLETE_KEY];
+            
+            NSLog(@"wrong sum:%@, right sum:%@, word id:%@", tWrongSum, tRightSum, tWordID);
+//            NSInteger tgs = isCompleted ? 1 : 0;
+            if (![fmdb executeUpdate:tUpdateLevelSQL withArgumentsInArray:@[@(isCompleted), @2, self.points, self.task]])
+            {
+                NSLog(@"save schedule update leve lose");
+            }
+            
+            if (![fmdb executeUpdate:tUpdateGameResultSQL withArgumentsInArray:@[tWrongSum, tRightSum, tWordIsComplete, tWordID]])
+            {
+                NSLog(@"save schedule update game result lose");
+            }
+        }
+    }
+    @catch (NSException *exception)
+    {
+        if (exception)
+        {
+            [fmdb rollback];
+            isRollBack = YES;
+        }
+    }
+    @finally
+    {
+        [fmdb commit];
+    }
+    [fmdb close];
+}
+
+- (BOOL)taskIsCompleted
+{
+    for (NSMutableDictionary *tDic in taskArr)
+    {
+        if (![tDic[WORD_IS_COMPLETE_KEY]boolValue])
+        {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark
+#pragma mark - Button Action
+
+- (void)buttonAction:(UIButton *)sender
+{
+    switch (sender.tag)
+    {
+        case GAME_SCREEN_BACK_BTN_TAG:
+        {
+            UIAlertView *progressAV = [[UIAlertView alloc]initWithTitle:nil message:@"保存进度否?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+            progressAV.delegate = self;
+            progressAV.tag = PROGRESS_ALTREVIEW_TAG;
+            [progressAV show];
+        }
+            break;
+        case NOTE_BTN_TAG:
+        {
+            NSString *pingJiaMing = keyBordTextDic[PING_JIA_MIN_KEY];
+            
+            if (![inputArr containsObject:@" "])
+            {
+                return;
+            }
+            
+            NSInteger spaceIndex = [inputArr indexOfObject:@" "];
+            
+            NSString *firstPingJiaMing = [pingJiaMing substringWithRange:NSMakeRange(spaceIndex, 1)];
+            
+            for (UIView *tView in self.keyBordView.subviews)
+            {
+                if ([tView isKindOfClass:[UIImageView class]])
+                {
+                    UIImageView *tIV = (UIImageView *)tView;
+                    UILabel *tLabel = [tIV.subviews firstObject];
+                    if ([firstPingJiaMing isEqualToString:tLabel.text])
+                    {
+                        [UIView animateWithDuration:0.2f
+                                         animations:^{
+                                            
+                                             tIV.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+                                         }completion:^(BOOL finished) {
+                                            
+                                             if (finished)
+                                             {
+                                                 tIV.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+                                             }
+                                         }];
+                    }
+                }
+                
+            }
+        }
+            break;
+        case NEXT_BTN_TAG:
+        {
+            [self configKeyBord];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark
+#pragma mark - UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex)
+    {
+        case 0:
+        {
+            NSLog(@"0");
+            if (alertView.tag == NEXT_POINTS_ALTERVIEW_TAG)
+            {
+                [self saveScheduleToDB];
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        case 1:
+        {
+            NSLog(@"");
+            
+            [self saveScheduleToDB];
+            
+            if (alertView.tag == NEXT_POINTS_ALTERVIEW_TAG)
+            {
+                [taskArr removeAllObjects];
+            }
+            else if (alertView.tag == PROGRESS_ALTREVIEW_TAG)
+            {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+#pragma mark
+#pragma mark - UIGesturDelegate
+
+
+@end
