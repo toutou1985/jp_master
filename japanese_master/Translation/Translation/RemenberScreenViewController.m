@@ -89,7 +89,7 @@
     self.preWordBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.preWordBtn.frame = CGRectMake(70, 20, 60, 40);
     self.preWordBtn.backgroundColor = [UIColor orangeColor];
-    [self.preWordBtn setTitle:@"pervious" forState:UIControlStateNormal];
+    [self.preWordBtn setTitle:@"上一个" forState:UIControlStateNormal];
     [self.preWordBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
     [self.preWordBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.preWordBtn.hidden = YES;
@@ -98,7 +98,7 @@
     self.nextWordBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.nextWordBtn.frame = CGRectMake(150, 20, 60, 40);
     self.nextWordBtn.backgroundColor = [UIColor orangeColor];
-    [self.nextWordBtn setTitle:@"next" forState:UIControlStateNormal];
+    [self.nextWordBtn setTitle:@"下一个" forState:UIControlStateNormal];
     [self.nextWordBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
     [self.nextWordBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.nextWordBtn.hidden = YES;
@@ -106,7 +106,7 @@
     
     self.pauseBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.pauseBtn.frame = CGRectMake(230, 20, 60, 40);
-    [self.pauseBtn setTitle:@"pause" forState:UIControlStateNormal];
+    [self.pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
     [self.pauseBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
     [self.pauseBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.pauseBtn];

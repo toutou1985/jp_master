@@ -56,6 +56,8 @@
     
     NSString *tUpdatePointsRunStatusSQL = @"update mission set game_status = 1 where mission_no = ? and (select count() from level where game_status = 1 and mission_id = ?) < 5 and  (select count()  from level where game_status = 1 and mission_id = ?) > 0";
     
+    NSString *tUpdateNextPointRunStatusSQL = @"update mission set game_status = 1 where mission_no = ? and (select count() from level where game_status = 1 and mission_id = ?) < 5";
+    
     if (![fmdb open])
     {
         NSLog(@"open db lose in game points");
@@ -70,11 +72,31 @@
         {
             NSLog(@"update points completed status lose");
         }
+        else
+        {
+            NSLog(@"update points completed status success");
+        }
         
         if (![fmdb executeUpdate:tUpdatePointsRunStatusSQL withArgumentsInArray:@[self.points, self.points, self.points, ]])
         {
             NSLog(@"update points run status lose");
         }
+        else
+        {
+            NSLog(@"update points run status success!");
+        }
+        
+        int points2 = [self.points intValue] +1;
+        NSString *nextPoint = [NSString stringWithFormat:@"%d", points2];
+        if (![fmdb executeUpdate:tUpdateNextPointRunStatusSQL withArgumentsInArray:@[nextPoint, nextPoint, ]])
+        {
+            NSLog(@"update points run status lose");
+        }
+        else
+        {
+            NSLog(@"update next points run status success!");
+        }
+        
         
         for (NSInteger i = 1; i < 6; i++)
         {
