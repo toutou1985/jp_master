@@ -282,13 +282,13 @@
     {
         gameVC = [[GameScreenViewController alloc]init];
         gameVC.points = self.points;
-        gameVC.task = [NSString stringWithFormat:@"%d", sender.tag - 150 + 1];
+        gameVC.task = [NSString stringWithFormat:@"%ld", sender.tag - 150 + 1];
     }
     else if (modeType == kModeTypeRemeber)
     {
         remenberVC = [[RemenberScreenViewController alloc]init];
         remenberVC.points = self.points;
-        remenberVC.task = [NSString stringWithFormat:@"%d", sender.tag - 150 + 1];
+        remenberVC.task = [NSString stringWithFormat:@"%ld", sender.tag - 150 + 1];
     }
     
     NSInteger pointTaskIndex = -1;

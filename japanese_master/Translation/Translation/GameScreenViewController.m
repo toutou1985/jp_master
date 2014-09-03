@@ -56,7 +56,7 @@
 
     [self configKeyBord];
 }
-
+//加载界面
 - (void)configKeyBord
 {
     col = -1;
@@ -78,11 +78,11 @@
     
     [self configKeyBordText];
     
-    self.keyBordView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) - 200, 320, 200)];
+    self.keyBordView = [[UIView alloc]initWithFrame:CGRectMake(4, CGRectGetHeight(self.view.frame) - 200, 320, 200)];
     self.keyBordView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.keyBordView];
     
-    keyBordTimer = [NSTimer scheduledTimerWithTimeInterval:0.15
+    keyBordTimer = [NSTimer scheduledTimerWithTimeInterval:0.05
                                                     target:self
                                                   selector:@selector(keyBordAnimation)
                                                   userInfo:nil
@@ -208,7 +208,7 @@
             
             noteBtn.enabled = NO;
             nextBtn.enabled = NO;
-            
+            //在闯完六关之后会走走这个方法
             UIImageView *completedIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part6_1"]];
             completedIV.frame = CGRectMake(50, CGRectGetMidY(self.view.frame), 5, 5);
             completedIV.backgroundColor = [UIColor clearColor];
@@ -339,7 +339,7 @@
                 NSLog(@"t:%@", t);
     }
 }
-
+//输入框
 - (void)configInputField:(NSInteger)theCount
 {
     self.inputView = [[UIView alloc]init];
@@ -375,7 +375,7 @@
         [self.inputView addSubview:tempLable];
     }
 }
-
+//点击输入框之后输入框内容消失
 - (void)inputCancelGesture:(UITapGestureRecognizer *)sender
 {
     UILabel *tempLable = (UILabel *)(sender.view);
@@ -390,7 +390,7 @@
     [inputArr replaceObjectAtIndex:idx withObject:@" "];
     tempLable.text = @"";
 }
-
+//先获取题目有的词 然后在随机生成其他词语
 - (NSMutableSet *)randomString:(NSString *)theStr
 {
     NSMutableSet *temp = [NSMutableSet set];
@@ -546,6 +546,10 @@
     NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
     
+    
+    
+
+    
     NSString *tUpdateLevelSQL = @"update level set game_status = ?, game_word_id = ? where mission_id = ? and level_no = ?";
     NSString *tUpdateGameResultSQL = @"update game_result set wrong_num = ?, right_num = ?, complete_status = ? where word_id = ?";
     
@@ -599,7 +603,7 @@
 {
     for (NSMutableDictionary *tDic in taskArr)
     {
-        if (![tDic[WORD_IS_COMPLETE_KEY]boolValue])
+        if (![tDic[@"isComplete"]boolValue])
         {
             return NO;
         }
@@ -687,9 +691,15 @@
         case 0:
         {
             NSLog(@"0");
+            //要进入下一关的 不不存的的
             if (alertView.tag == NEXT_POINTS_ALTERVIEW_TAG)
             {
                 [self saveScheduleToDB];
+                
+                
+    
+                
+                
             }
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -699,14 +709,16 @@
             NSLog(@"");
             
             [self saveScheduleToDB];
-            
+            //不要进入下一关的
             if (alertView.tag == NEXT_POINTS_ALTERVIEW_TAG)
             {
                 [taskArr removeAllObjects];
             }
+            //保存进度的
             else if (alertView.tag == PROGRESS_ALTREVIEW_TAG)
             {
                 [self.navigationController popViewControllerAnimated:YES];
+                
             }
         }
             break;
@@ -715,7 +727,33 @@
             break;
     }
 }
-
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    NSString * sqlStr = @"<#string#>";
+//    //在这加个判断条件从数据库中提取信息 如果所有的小关都通过了，则开启下一个大关
+//    //获得存放数据库文件的沙盒地址
+//    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+//    //创建数据库
+//    FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
+//    //判断数据库是否打开
+//    
+//    if (![fmdb open])
+//    {
+//        NSLog(@"open db lose in game points");
+//    }
+//    [fmdb beginTransaction];
+//    
+//    
+//    
+//    
+//    
+//
+//    
+//    
+//    
+//    
+//    
+//}
 
 #pragma mark
 #pragma mark - UIGesturDelegate
