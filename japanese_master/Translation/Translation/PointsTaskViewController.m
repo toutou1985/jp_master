@@ -56,6 +56,10 @@
     
     NSString *tUpdatePointsRunStatusSQL = @"update mission set game_status = 1 where mission_no = ? and (select count() from level where game_status = 1 and mission_id = ?) < 5 and  (select count()  from level where game_status = 1 and mission_id = ?) > 0";
     
+    NSString *tUpdateNextPointRunStatusSQL = @"update mission set game_status = 1 where mission_no = ? and (select count() from level where game_status = 1 and mission_id = ?) < 5 and (select count() from level where game_status = 1 and mission_id = ?) = 5";
+    
+    NSString *tresetNextPointRunStatusSQL = @"update mission set game_status = 0 where mission_no = ? and (select count() from level where game_status = 1 and mission_id = ?) < 5 and (select count() from level where game_status = 1 and mission_id = ?) < 5";
+    
     if (![fmdb open])
     {
         NSLog(@"open db lose in game points");
@@ -70,11 +74,53 @@
         {
             NSLog(@"update points completed status lose");
         }
+        else
+        {
+            NSLog(@"update points completed status success");
+        }
         
         if (![fmdb executeUpdate:tUpdatePointsRunStatusSQL withArgumentsInArray:@[self.points, self.points, self.points, ]])
         {
             NSLog(@"update points run status lose");
         }
+        else
+        {
+            NSLog(@"update points run status success!");
+        }
+        
+        int points2 = [self.points intValue] +1;
+        NSString *nextPoint = [NSString stringWithFormat:@"%d", points2];
+        if (![fmdb executeUpdate:tUpdateNextPointRunStatusSQL withArgumentsInArray:@[nextPoint, nextPoint, self.points,]])
+        {
+            NSLog(@"update points run status lose");
+        }
+        else
+        {
+            NSLog(@"update next points run status success!");
+        }
+        
+        
+        
+        if( points2 ==2 )
+        {
+        for (int i = 3; i <= 5; i++)
+        {
+            NSString *tnextPoint = [NSString stringWithFormat:@"%d", i];
+            NSString *tforwordPoint = [NSString stringWithFormat:@"%d", i-1];
+            if (![fmdb executeUpdate:tresetNextPointRunStatusSQL withArgumentsInArray:@[tnextPoint, tnextPoint, tforwordPoint,]])
+            {
+                NSLog(@"update points run status lose");
+            }
+            else
+            {
+                NSLog(@"modify next points run status success!!!");
+            }
+
+            
+        }
+        }
+
+        
         
         for (NSInteger i = 1; i < 6; i++)
         {
@@ -413,7 +459,7 @@
         }
         else
         {
-            UIAlertView *errAV = [[UIAlertView alloc]initWithTitle:nil message:@"完成本关-->浏览" delegate:self cancelButtonTitle:@"抗议无效" otherButtonTitles: nil];
+            UIAlertView *errAV = [[UIAlertView alloc]initWithTitle:nil message:@"完成本关-->浏览" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [errAV show];
         }
     }
