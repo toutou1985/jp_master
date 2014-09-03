@@ -56,7 +56,7 @@
     [self.view addSubview:bgIV];
     
     self.backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.backBtn.frame = CGRectMake(0, 0, 40, 40);
+    self.backBtn.frame = CGRectMake(0, 20, 40, 40);
     [self.backBtn setTitle:@"<" forState:UIControlStateNormal];
     [self.backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backBtn];
