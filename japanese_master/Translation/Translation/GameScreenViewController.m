@@ -125,6 +125,7 @@
     }
     
     self.chinaeseLabel.text = keyBordTextDic[PIAN_JIA_MIN_KEY];
+    self.japaneseLabel.text = keyBordTextDic[CHINESE_MENNS_KEY];
     
     UIImageView *tapIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part7_2"]];
     tapIV.frame = CGRectMake(2 + 52 * col, (CGRectGetHeight(self.keyBordView.frame) - 185) + row * 52, 50, 50);
@@ -331,6 +332,7 @@
     keyBordTextDic[SINGLE_WORD_KEY] = tSingleArr;
     keyBordTextDic[PIAN_JIA_MIN_KEY] = tDic[PIAN_JIA_MIN_KEY];
     keyBordTextDic[PING_JIA_MIN_KEY]  = tDic[PING_JIA_MIN_KEY];
+    keyBordTextDic[CHINESE_MENNS_KEY] = tDic[CHINESE_MENNS_KEY];
     
     [self configInputField:pingJiaMing.length];
     
@@ -531,12 +533,14 @@
     [self.view addSubview:self.chinaeseLabel];
     
     self.japaneseLabel = [[UILabel alloc]init];
-    self.japaneseLabel.frame = CGRectMake(70, 150, 180, 80);
-    self.japaneseLabel.backgroundColor = [UIColor orangeColor];
-    self.japaneseLabel.font = [UIFont systemFontOfSize:25.f];
-    self.japaneseLabel.text = @"";
+    self.japaneseLabel.frame = CGRectMake(50, 270, 220, 50);
+    self.japaneseLabel.backgroundColor = [UIColor redColor];
+    self.japaneseLabel.font = [UIFont systemFontOfSize:15.0f];
+    self.japaneseLabel.numberOfLines = 0;
+    self.japaneseLabel.textAlignment = NSTextAlignmentCenter;
+    //self.japaneseLabel.text = @"";
     self.japaneseLabel.textColor = [UIColor whiteColor];
-   //[self.view addSubview:self.japaneseLabel];
+   [self.view addSubview:self.japaneseLabel];
 }
 
 - (void)saveScheduleToDB

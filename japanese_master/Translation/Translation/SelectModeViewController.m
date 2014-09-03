@@ -37,6 +37,7 @@
 
 - (void)setupView
 {
+    //self.view.backgroundColor = [UIColor colorWithRed:196/255.0 green:213/255.0 blue:53/255.0 alpha:1];
     UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part_c_1"]];
     bgIV.backgroundColor = [UIColor clearColor];
     [self.view addSubview:bgIV];
