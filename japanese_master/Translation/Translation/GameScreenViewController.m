@@ -82,7 +82,7 @@
     self.keyBordView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.keyBordView];
     
-    keyBordTimer = [NSTimer scheduledTimerWithTimeInterval:0.05
+    keyBordTimer = [NSTimer scheduledTimerWithTimeInterval:0.03
                                                     target:self
                                                   selector:@selector(keyBordAnimation)
                                                   userInfo:nil
@@ -554,7 +554,7 @@
     
 
     
-    NSString *tUpdateLevelSQL = @"update level set game_status = ?, game_word_id = ? where mission_id = ? and level_no = ?";
+    NSString *tUpdateLevelSQL = @"update level set game_status = ?, game_word_id = ? where mission_id = ? and level_no = ? where game_status !=1";
     NSString *tUpdateGameResultSQL = @"update game_result set wrong_num = ?, right_num = ?, complete_status = ? where word_id = ?";
     
     if (![fmdb open])
