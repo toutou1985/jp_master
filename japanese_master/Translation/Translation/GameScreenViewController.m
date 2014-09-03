@@ -622,7 +622,7 @@
     {
         case GAME_SCREEN_BACK_BTN_TAG:
         {
-            UIAlertView *progressAV = [[UIAlertView alloc]initWithTitle:nil message:@"保存进度否?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+            UIAlertView *progressAV = [[UIAlertView alloc]initWithTitle:nil message:@"是否保存进度?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
             progressAV.delegate = self;
             progressAV.tag = PROGRESS_ALTREVIEW_TAG;
             [progressAV show];

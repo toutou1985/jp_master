@@ -413,7 +413,7 @@
         }
         else
         {
-            UIAlertView *errAV = [[UIAlertView alloc]initWithTitle:nil message:@"完成本关-->浏览" delegate:self cancelButtonTitle:@"抗议无效" otherButtonTitles: nil];
+            UIAlertView *errAV = [[UIAlertView alloc]initWithTitle:nil message:@"完成本关-->浏览" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [errAV show];
         }
     }
