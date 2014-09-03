@@ -13,7 +13,6 @@
 		C1113FA218681965007E8FE4 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1113F9F18681965007E8FE4 /* Icon.png */; };
 		C1113FA318681965007E8FE4 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1113FA018681965007E8FE4 /* Icon@2x.png */; };
 		C12734A018697CAD003D1C24 /* RemenberScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C127349F18697CAD003D1C24 /* RemenberScreenViewController.m */; };
-		C19B3BA119B71F3A00F1EE2D /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = C19B3BA019B71F3A00F1EE2D /* 1.png */; };
 		C1A5507E186BF2DF00C57211 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5507D186BF2DF00C57211 /* StatisticsViewController.m */; };
 		C1A55084186BF57400C57211 /* StatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A55083186BF57400C57211 /* StatisticsCell.m */; };
 		C1A55088186C264D00C57211 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A55087186C264D00C57211 /* DictionaryViewController.m */; };
@@ -63,7 +62,6 @@
 		C1113FA018681965007E8FE4 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		C127349E18697CAD003D1C24 /* RemenberScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemenberScreenViewController.h; sourceTree = "<group>"; };
 		C127349F18697CAD003D1C24 /* RemenberScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemenberScreenViewController.m; sourceTree = "<group>"; };
-		C19B3BA019B71F3A00F1EE2D /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		C1A5507C186BF2DF00C57211 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		C1A5507D186BF2DF00C57211 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		C1A55082186BF57400C57211 /* StatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsCell.h; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 		C1ADE227185EA5680054A346 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C19B3BA019B71F3A00F1EE2D /* 1.png */,
 				C1113F9E18681965007E8FE4 /* Icon_120x120.png */,
 				C1113F9F18681965007E8FE4 /* Icon.png */,
 				C1113FA018681965007E8FE4 /* Icon@2x.png */,
@@ -390,7 +387,6 @@
 				C1113FA118681965007E8FE4 /* Icon_120x120.png in Resources */,
 				C1ADE22B185EA5680054A346 /* InfoPlist.strings in Resources */,
 				C1ADE233185EA5680054A346 /* Images.xcassets in Resources */,
-				C19B3BA119B71F3A00F1EE2D /* 1.png in Resources */,
 				C1113F921868075F007E8FE4 /* Default-568h@2x.png in Resources */,
 				C1113FA218681965007E8FE4 /* Icon.png in Resources */,
 				C1113F911868075F007E8FE4 /* Default.png in Resources */,
