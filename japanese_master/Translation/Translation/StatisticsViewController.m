@@ -198,7 +198,7 @@
         tIndex = indexPath.row;
     }
     
-    cell.numberLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
     cell.wordLabel.text = displayWordsArr[tIndex][PIAN_JIA_MIN_KEY];
     cell.reslutLabel.text = [NSString stringWithFormat:@"%@ / %@", displayWordsArr[tIndex][WORD_WRONG_SUM_KEY], displayWordsArr[tIndex][WORD_RIGHT_SUM_KEY]];
     

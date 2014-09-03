@@ -47,7 +47,7 @@
     [self.view addSubview:logoIV];
     
     UIButton *gameModeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [gameModeBtn setTitle:@"game mode" forState:UIControlStateNormal];
+    [gameModeBtn setTitle:@"游戏模式" forState:UIControlStateNormal];
     [gameModeBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     gameModeBtn.tag = GAMEMODE_BTN_TAG;
     [gameModeBtn setBackgroundImage:[UIImage imageNamed:@"part_c_2"] forState:UIControlStateNormal];
@@ -55,7 +55,7 @@
     [self.view addSubview:gameModeBtn];
     
     UIButton *testModeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [testModeBtn setTitle:@"dictionary mode" forState:UIControlStateNormal];
+    [testModeBtn setTitle:@"词典模式" forState:UIControlStateNormal];
     [testModeBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     testModeBtn.tag = TESTMODE_BTN_TAG;
     [testModeBtn setBackgroundImage:[UIImage imageNamed:@"part_c_2"] forState:UIControlStateNormal];
@@ -63,7 +63,7 @@
     [self.view addSubview:testModeBtn];
     
     UIButton *rememberModeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [rememberModeBtn setTitle:@"remeber mode" forState:UIControlStateNormal];
+    [rememberModeBtn setTitle:@"记忆模式" forState:UIControlStateNormal];
     [rememberModeBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     rememberModeBtn.tag = REMEMBERMODE_BTN_TAG;
     [rememberModeBtn setBackgroundImage:[UIImage imageNamed:@"part_c_2"] forState:UIControlStateNormal];
@@ -71,7 +71,7 @@
     [self.view addSubview:rememberModeBtn];
     
     UIButton *staticticsBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [staticticsBtn setTitle:@"statictics mode" forState:UIControlStateNormal];
+    [staticticsBtn setTitle:@"计数统计" forState:UIControlStateNormal];
     [staticticsBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     staticticsBtn.tag = STATICTICS_BTN_TAG;
     [staticticsBtn setBackgroundImage:[UIImage imageNamed:@"part_c_2"] forState:UIControlStateNormal];

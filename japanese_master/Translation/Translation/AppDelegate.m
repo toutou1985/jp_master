@@ -58,11 +58,15 @@
 {
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
-    if (![fm fileExistsAtPath:DBPath isDirectory:NO])
+    
+    BOOL isDir = NO;
+    
+    if (![fm fileExistsAtPath:DBPath isDirectory:&isDir] && !isDir)
     {
         NSString *bundeDBPath = [[NSBundle mainBundle]pathForResource:@"translation" ofType:@"sqlite"];
      
         NSError *dbErr = nil;
+        
         if (![fm copyItemAtPath:bundeDBPath toPath:DBPath error:&dbErr])
         {
             NSLog(@"dbErr:%@", dbErr);

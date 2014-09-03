@@ -83,7 +83,7 @@
             while ([set next])
             {
                 NSString *tCompleted = [set stringForColumn:@"count"];
-                NSString *tPoints = [NSString stringWithFormat:@"%d", i];
+                NSString *tPoints = [NSString stringWithFormat:@"%ld", (long)i];
                 NSDictionary *tDic = @{POINTS_KEY: tPoints,
                                        TASK_KEY: tCompleted};
                 

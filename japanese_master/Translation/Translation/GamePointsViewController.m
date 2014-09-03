@@ -52,7 +52,7 @@
     
 //    if (modeType == kModeTypeGame)
     {
-        tSQL = @"select m.game_status ,count(gr.complete_status) as count, m.mission_no from  word w left join  game_result gr on w.id = gr.word_id and gr.right_num > 0 left join mission m on m.id = w.mission_id where m.mission_no = ?";
+        tSQL = @"select m.game_status ,count(gr.complete_status) as count, m.mission_no from  word w  join  game_result gr on w.id = gr.word_id and gr.right_num > 0  join mission m on m.id = w.mission_id where m.mission_no = ?";
     }
 //    else if (modeType == kModeTypeRemeber)
     {
@@ -60,9 +60,11 @@
     }
     
     pointsSourceArr = [NSMutableArray array];
-    
+    //获得存放数据库文件的沙盒地址
     NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    //创建数据库
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
+    //判断数据库是否打开
 
     if (![fmdb open])
     {
@@ -79,10 +81,11 @@
             
             while ([set next])
             {
+                //获取字符串
                 NSString *tGameStatus = [set stringForColumn:@"game_status"];
                 tGameStatus = tGameStatus ? tGameStatus : @"0";
                 NSString *tCompleted = [set stringForColumn:@"count"];
-                NSString *tPoints = [NSString stringWithFormat:@"%d", i];
+                NSString *tPoints = [NSString stringWithFormat:@"%ld", (long)i];
                 NSDictionary *tDic = @{POINTS_KEY: tPoints,
                                        COMPLETED_KEY: tCompleted,
                                        GAME_STATUS_KEY: tGameStatus};

@@ -191,7 +191,7 @@
             if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
             {
                 tDic[WORD_IS_COMPLETE_KEY] = @YES;
-                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
+                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%ld", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
                 
                 break;
             }
@@ -201,10 +201,10 @@
         {
             NSLog(@"win");
             [self saveScheduleToDB];
-//            UIAlertView *nextAlerView = [[UIAlertView alloc]initWithTitle:@"要还是不要" message:@"这关已戳完，进入下关否？" delegate:self cancelButtonTitle:@"要" otherButtonTitles:@"不要", nil];
-//            nextAlerView.tag = NEXT_POINTS_ALTERVIEW_TAG;
-//            nextAlerView.delegate = self;
-//            [nextAlerView show];
+          UIAlertView *nextAlerView = [[UIAlertView alloc]initWithTitle:@"要还是不要" message:@"这关已戳完，进入下关否？" delegate:self cancelButtonTitle:@"要" otherButtonTitles:@"不要", nil];
+            nextAlerView.tag = NEXT_POINTS_ALTERVIEW_TAG;
+            nextAlerView.delegate = self;
+            [nextAlerView show];
             
             noteBtn.enabled = NO;
             nextBtn.enabled = NO;
@@ -215,7 +215,8 @@
             completedIV.center = self.view.center;
             [self.view addSubview:completedIV];
             
-            [UIView animateWithDuration:0.1f
+            
+            [UIView animateWithDuration:0.01f
                              animations:^{
                                 
                                  completedIV.transform = CGAffineTransformMakeScale(30, 30);
@@ -239,7 +240,7 @@
     {
         if (![inputArr containsObject:@" "])//wrong count
         {
-            NSLog(@"wrong");
+            NSLog(@"错误");
             
             wrongIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part6_2"]];
             wrongIV.frame = CGRectMake(0, 0, 80, 80);
@@ -258,7 +259,7 @@
             {
                 if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
                 {
-                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
+                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%ld", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
                     break;
                 }
             }
@@ -342,7 +343,7 @@
 - (void)configInputField:(NSInteger)theCount
 {
     self.inputView = [[UIView alloc]init];
-    self.inputView.frame = CGRectMake(30, 150, 260, 100);
+    self.inputView.frame = CGRectMake(40, 180, 240, 100);
     self.inputView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.inputView];
     
@@ -353,12 +354,16 @@
         [inputArr addObject:@" "];
     }
     
-    CGFloat rate = 260 / theCount - 40;
+    CGFloat rate = (240 - theCount * 50)/(theCount - 1);
     
     for (NSInteger i = 0; i < theCount; i++)
     {
-        UILabel *tempLable = [[UILabel alloc]initWithFrame:CGRectMake(i * 55 + rate, 0, 40, 40)];
-        tempLable.backgroundColor = [UIColor whiteColor];
+        UILabel *tempLable = [[UILabel alloc]initWithFrame:CGRectMake(i * (50 + rate), 0, 50, 50)];
+        tempLable.layer.backgroundColor = [[UIColor whiteColor] CGColor];
+        tempLable.layer.borderColor = [[UIColor redColor]CGColor];
+        tempLable.layer.borderWidth = 1.0;
+        tempLable.layer.cornerRadius = 10;
+        //tempLable.backgroundColor = [UIColor whiteColor];
         tempLable.textColor = [UIColor blackColor];
         tempLable.textAlignment = NSTextAlignmentCenter;
         tempLable.tag = INPUT_FILED_BASE_TAG + i;
@@ -374,7 +379,7 @@
 - (void)inputCancelGesture:(UITapGestureRecognizer *)sender
 {
     UILabel *tempLable = (UILabel *)(sender.view);
-    NSLog(@"label.tag:%d", tempLable.tag);
+    NSLog(@"label.tag:%ld", (long)tempLable.tag);
     if (!tempLable.text || [tempLable.text isEqualToString:@""])
     {
         return;
@@ -406,7 +411,7 @@
     {
         NSInteger j = arc4random() % pingJiaMingCount;
         id obj = [SPELL_LIST substringWithRange:NSMakeRange(j, 1)];
-        NSLog(@"rand:%d ---- %@", j, obj);
+        NSLog(@"rand:%ld ---- %@", (long)j, obj);
         
         if (![temp containsObject:obj] && ![theStr containtObject:obj])
         {
@@ -416,7 +421,7 @@
     }
     while (temp.count < 18);
     
-    NSLog(@"temp array count:%d", temp.count);
+    NSLog(@"temp array count:%lu", (unsigned long)temp.count);
     return temp;
 }
 
@@ -502,24 +507,24 @@
     
     self.noteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.noteBtn.tag = NOTE_BTN_TAG;
-    [self.noteBtn setTitle:@"note" forState:UIControlStateNormal];
+    [self.noteBtn setTitle:@"提示" forState:UIControlStateNormal];
     [self.noteBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
-    self.noteBtn.frame = CGRectMake(60, 20, 100, 40);
+    self.noteBtn.frame = CGRectMake(40, 20, 100, 40);
     [self.noteBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.noteBtn];
     
     self.nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.nextBtn.tag = NEXT_BTN_TAG;
-    [self.nextBtn setTitle:@"next" forState:UIControlStateNormal];
+    [self.nextBtn setTitle:@"下一个" forState:UIControlStateNormal];
     [self.nextBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
-    self.nextBtn.frame = CGRectMake(200, 20, 100, 40);
+    self.nextBtn.frame = CGRectMake(180, 20, 100, 40);
     [self.nextBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.nextBtn];
     
     self.chinaeseLabel = [[UILabel alloc]init];
-    self.chinaeseLabel.frame = CGRectMake(70, 100, 180, 50);
+    self.chinaeseLabel.frame = CGRectMake(40, 100, 240, 50);
     self.chinaeseLabel.backgroundColor = [UIColor purpleColor];
-    self.chinaeseLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.chinaeseLabel.font = [UIFont systemFontOfSize:16.0f];
     self.chinaeseLabel.textAlignment = NSTextAlignmentCenter;
     self.chinaeseLabel.textColor = [UIColor whiteColor];
     self.chinaeseLabel.numberOfLines = 0;
@@ -531,7 +536,7 @@
     self.japaneseLabel.font = [UIFont systemFontOfSize:25.f];
     self.japaneseLabel.text = @"";
     self.japaneseLabel.textColor = [UIColor whiteColor];
-//    [self.view addSubview:self.japaneseLabel];
+   //[self.view addSubview:self.japaneseLabel];
 }
 
 - (void)saveScheduleToDB
@@ -644,7 +649,7 @@
                     UILabel *tLabel = [tIV.subviews firstObject];
                     if ([firstPingJiaMing isEqualToString:tLabel.text])
                     {
-                        [UIView animateWithDuration:0.2f
+                        [UIView animateWithDuration:0.01f
                                          animations:^{
                                             
                                              tIV.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
