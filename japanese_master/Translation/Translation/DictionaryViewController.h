@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DictionaryViewController : UIViewController<UITextFieldDelegate>
+@interface DictionaryViewController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic,strong)UITableView * tableView;
 
 @end

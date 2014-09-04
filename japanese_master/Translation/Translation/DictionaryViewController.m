@@ -10,7 +10,7 @@
 #import "Tools.h"
 #import "FMDatabase.h"
 #import "Config.h"
-
+#import "AutocompletionTableView.h"
 @interface DictionaryViewController ()
 {
     NSMutableArray *searchResultArr;
@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UILabel *chineseLabel;
 @property (nonatomic, strong) UITextField *enterTF;
 @property (nonatomic, strong) UIButton *enterBtn;
-
+@property (nonatomic, strong) AutocompletionTableView *autoCompleter;
 @end
 
 @implementation DictionaryViewController
@@ -32,7 +32,7 @@
 @synthesize chineseLabel;
 @synthesize enterTF;
 @synthesize enterBtn;
-
+@synthesize autoCompleter = _autoCompleter;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,12 +41,26 @@
     }
     return self;
 }
+- (AutocompletionTableView *)autoCompleter
+{
+    if (!_autoCompleter)
+    {
+        NSMutableDictionary *options = [NSMutableDictionary dictionaryWithCapacity:2];
+        [options setValue:[NSNumber numberWithBool:YES] forKey:ACOCaseSensitive];
+        [options setValue:nil forKey:ACOUseSourceFont];
+        
+        _autoCompleter = [[AutocompletionTableView alloc] initWithTextField:self.enterTF inViewController:self withOptions:options];
+        _autoCompleter.suggestionsDictionary = [NSArray arrayWithArray:searchResultArr];
+    }
+    return _autoCompleter;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self setupView];
+    [self.enterTF addTarget:self.autoCompleter action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)setupView
@@ -67,6 +81,7 @@
     self.enterTF.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.enterTF.delegate = self;
     [self.view addSubview:self.enterTF];
+   
     
     self.enterBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.enterBtn.frame = CGRectMake(230, 60, 60, 40);
@@ -97,6 +112,8 @@
     
     
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {

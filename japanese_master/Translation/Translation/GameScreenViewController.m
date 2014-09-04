@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, strong) UIView   *inputView;
 
+@property (nonatomic,strong) NSString * japaneseStr;
 @end
 
 @implementation GameScreenViewController
@@ -126,6 +127,12 @@
     
     self.chinaeseLabel.text = keyBordTextDic[PIAN_JIA_MIN_KEY];
     self.japaneseLabel.text = keyBordTextDic[CHINESE_MENNS_KEY];
+    self.japaneseStr = keyBordTextDic[CHINESE_MENNS_KEY];
+    
+
+    
+    
+
     
     UIImageView *tapIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part7_2"]];
     tapIV.frame = CGRectMake(2 + 52 * col, (CGRectGetHeight(self.keyBordView.frame) - 185) + row * 52, 50, 50);
@@ -148,6 +155,9 @@
                         
                          tapIV.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
                          tapLable.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+                         
+                         
+                        
                      }];
     
     [self.keyBordView addSubview:tapIV];
@@ -292,6 +302,7 @@
 	// Do any additional setup after loading the view.
     [self loadDataFromDB];
     [self setupView];
+    [self move];
     wordOrder = 0;
 }
 
@@ -497,7 +508,8 @@
 
 - (void)setupView
 {
-    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part_c_1"]];
+    
+        UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part_c_1"]];
     [self.view addSubview:bgIV];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -532,17 +544,53 @@
     self.chinaeseLabel.numberOfLines = 0;
     [self.view addSubview:self.chinaeseLabel];
     
+    
+    
+    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(30, 270, 260,50)];
+    [bgView setBackgroundColor:[UIColor redColor]];
+    [self.view addSubview:bgView];
+    bgView.clipsToBounds = YES;
+
     self.japaneseLabel = [[UILabel alloc]init];
-    self.japaneseLabel.frame = CGRectMake(50, 270, 220, 50);
-    self.japaneseLabel.backgroundColor = [UIColor redColor];
+    self.japaneseLabel.frame = CGRectMake(0, 10, 360, 30);
+    //self.japaneseLabel.backgroundColor = [UIColor redColor];
     self.japaneseLabel.font = [UIFont systemFontOfSize:15.0f];
-    self.japaneseLabel.numberOfLines = 0;
+    self.japaneseLabel.numberOfLines = 1;
     self.japaneseLabel.textAlignment = NSTextAlignmentCenter;
     //self.japaneseLabel.text = @"";
     self.japaneseLabel.textColor = [UIColor whiteColor];
-   [self.view addSubview:self.japaneseLabel];
-}
+    CGRect frame = self.japaneseLabel.frame;
+	frame.origin.x = -360;
+	self.japaneseLabel.frame = frame;
+	//self.japaneseLabel.backgroundColor = [UIColor redColor];
+	[UIView beginAnimations:@"testAnimation" context:NULL];
+	[UIView setAnimationDuration:4.0f];
+	[UIView setAnimationCurve:UIViewAnimationCurveLinear];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationRepeatAutoreverses:NO];
+	[UIView setAnimationRepeatCount:999999];
+	
+	frame = self.japaneseLabel.frame;
+	frame.origin.x = 360;
+	self.japaneseLabel.frame = frame;
+	[UIView commitAnimations];
 
+   [bgView addSubview:self.japaneseLabel];
+    
+   
+    
+    
+    
+    
+    
+}
+- (void)move
+{
+    
+    
+    
+    
+}
 - (void)saveScheduleToDB
 {
     BOOL isCompleted = [self taskIsCompleted];
