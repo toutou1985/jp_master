@@ -159,7 +159,7 @@
         NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
         FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
         
-        NSString *tSQL = @"select kanji, kana, chinese_means from word where kanji = '?' or kana = '?' or chinese_means = '?'";
+        NSString *tSQL = @"select kanji, kana, chinese_means from word where kanji like ? or kana like ? or chinese_means like ?";
         
 //        NSString *tSQL = [NSString stringWithFormat:@"select kanji, kana, chinese_means from word where kanji like '%@' or kana like '%@' or chinese_means like '%@'", tEnterStr, tEnterStr, tEnterStr];
         
@@ -168,7 +168,8 @@
             NSLog(@"open db lose in game points");
         }
         
-        FMResultSet *set = [fmdb executeQuery:tSQL withArgumentsInArray:@[tEnterStr, tEnterStr, tEnterStr]];
+        NSString *tEnterStrtEnterStr = [NSString stringWithFormat:@"%%%@%%",tEnterStr];
+        FMResultSet *set = [fmdb executeQuery:tSQL withArgumentsInArray:@[tEnterStrtEnterStr, tEnterStrtEnterStr, tEnterStrtEnterStr]];
         
         while ([set next])
         {
