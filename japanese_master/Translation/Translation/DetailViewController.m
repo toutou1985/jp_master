@@ -48,7 +48,8 @@
     self.chineseLabel.numberOfLines = 0;
     self.chineseLabel.font = [UIFont systemFontOfSize:14.0f];
     self.chineseLabel.textAlignment = NSTextAlignmentCenter;
-    self.chineseLabel.text = [_wordsArr objectAtIndex:_row * 3];
+    self.chineseLabel.text = [_wordsArr objectAtIndex:0];
+    
     [self.view addSubview:self.chineseLabel];
     
     self.pingjiamingLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 180, 240, 30)];
@@ -57,7 +58,7 @@
     self.pingjiamingLabel.numberOfLines = 0;
     self.pingjiamingLabel.font = [UIFont systemFontOfSize:14.0f];
     self.pingjiamingLabel.textAlignment = NSTextAlignmentCenter;
-    self.pingjiamingLabel.text = [_wordsArr objectAtIndex:_row * 3 + 2];
+    self.pingjiamingLabel.text = [_wordsArr objectAtIndex:2];
     [self.view addSubview:self.pingjiamingLabel];
     
     self.pianjiamingLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 210, 240, 60)];
@@ -66,7 +67,8 @@
     self.pianjiamingLabel.numberOfLines = 0;
     self.pianjiamingLabel.font = [UIFont systemFontOfSize:14.0f];
     self.pianjiamingLabel.textAlignment = NSTextAlignmentCenter;
-    self.pianjiamingLabel.text = [_wordsArr objectAtIndex:_row * 3 + 1];
+    self.pianjiamingLabel.text = [_wordsArr objectAtIndex:1];
+  
     [self.view addSubview:self.pianjiamingLabel];
     
     
@@ -104,6 +106,12 @@
         [[UIApplication sharedApplication] openURL:url];
         
     }
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [_wordsArr removeAllObjects];
+    
+    
 }
 
 - (void)buttonAction:(id)sender

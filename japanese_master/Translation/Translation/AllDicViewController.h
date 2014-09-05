@@ -12,4 +12,5 @@
 @property (nonatomic,strong) NSMutableArray * tableArray;
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic,strong)UITableView * tableView;
+@property (nonatomic,strong) NSMutableArray * sendArr;
 @end

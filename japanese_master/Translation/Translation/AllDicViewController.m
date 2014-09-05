@@ -9,6 +9,7 @@
 #import "AllDicViewController.h"
 #import "FMDatabase.h"
 #import "AllWordsTableViewCell.h"
+#import "DetailViewController.h"
 @interface AllDicViewController ()
 
 @end
@@ -20,6 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _sendArr = [NSMutableArray array];
     }
     return self;
 }
@@ -102,6 +104,7 @@
     
     NSMutableDictionary * dic = [_tableArray objectAtIndex:indexPath.row];
     cell.pianLabel.text = [dic objectForKey:@"kanji"];
+   
     cell.backgroundColor = [UIColor colorWithRed:196/255.0 green:213/255.0 blue:53/255.0 alpha:1];
   
     return cell;
@@ -111,8 +114,17 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
+    NSMutableDictionary * dic = [_tableArray objectAtIndex:indexPath.row];
+    NSString * pian= [dic objectForKey:@"kanji"];
+    NSString * ping = [dic objectForKey:@"kana"];
+    NSString * chinese = [dic objectForKey:@"chinese_means"];
+    [_sendArr addObject:pian];
+    [_sendArr addObject:ping];
+    [_sendArr addObject:chinese];
+    DetailViewController * detailView = [[DetailViewController alloc] init];
+    detailView.wordsArr = _sendArr;
+    //detailView.row = indexPath.row;
+    [self.navigationController pushViewController:detailView animated:YES];
     
 }
 - (void)buttonAction:(id)sender
