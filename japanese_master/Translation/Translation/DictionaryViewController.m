@@ -10,7 +10,7 @@
 #import "Tools.h"
 #import "FMDatabase.h"
 #import "Config.h"
-
+#import "AutocompletionTableView.h"
 @interface DictionaryViewController ()
 {
     NSMutableArray *searchResultArr;
@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UILabel *chineseLabel;
 @property (nonatomic, strong) UITextField *enterTF;
 @property (nonatomic, strong) UIButton *enterBtn;
-
+@property (nonatomic, strong) AutocompletionTableView *autoCompleter;
 @property (nonatomic, strong) NSMutableArray * dicArr;
 @end
 
@@ -33,7 +33,7 @@
 @synthesize chineseLabel;
 @synthesize enterTF;
 @synthesize enterBtn;
-
+@synthesize autoCompleter = _autoCompleter;
 @synthesize dicArr;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,12 +44,27 @@
     return self;
 }
 
+- (AutocompletionTableView *)autoCompleter
+{
+    if (!_autoCompleter)
+    {
+        NSMutableDictionary *options = [NSMutableDictionary dictionaryWithCapacity:2];
+        [options setValue:[NSNumber numberWithBool:YES] forKey:ACOCaseSensitive];
+        [options setValue:nil forKey:ACOUseSourceFont];
+        
+        _autoCompleter = [[AutocompletionTableView alloc] initWithTextField:self.enterTF inViewController:self withOptions:options];
+        _autoCompleter.suggestionsDictionary = [NSArray arrayWithObjects:@"hostel",@"caret",@"carrot",@"house",@"horse", nil];
+    }
+    return _autoCompleter;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self setupView];
+    [self.enterTF addTarget:self.autoCompleter action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
+
    }
 
 - (void)setupView
