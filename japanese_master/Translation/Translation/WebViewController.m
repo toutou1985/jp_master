@@ -51,13 +51,15 @@
 //    [webView loadRequest:request];//加载
 //    [self.view addSubview:webView];
     NSString *searchWord = _receiveStr;
-    //NSString *urlString = [NSString stringWithFormat:@"http://fanyi.baidu.com/#jp/zh/%@",searchWord];
-    NSString * urlString = @"http://fanyi.baidu.com/#jp/zh";
+    NSString *urlString = [NSString stringWithFormat:@"http://fanyi.baidu.com/#jp/zh/%@",searchWord];
+    //NSString * urlString = @"http://fanyi.baidu.com/#jp/zh";
     
     // ブラウザで開く
-    //NSURL *url = [NSURL URLWithString:
-    //              [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURL *url = [NSURL URLWithString:urlString];//创建URL
+    NSURL *url = [NSURL URLWithString:
+                [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *strUrl = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"%@url===============",url);
+    //NSURL *url = [NSURL URLWithString:urlString];//创建URL
     if(url == nil){
         NSLog(@"NSURL is nil");
     } else {
