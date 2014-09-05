@@ -11,6 +11,7 @@
 #import "FMDatabase.h"
 #import "Config.h"
 #import "AutocompletionTableView.h"
+#import "AllDicViewController.h"
 @interface DictionaryViewController ()
 {
     NSMutableArray *searchResultArr;
@@ -88,7 +89,10 @@
    
     
     self.enterBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.enterBtn.frame = CGRectMake(230, 60, 60, 40);
+    self.enterBtn.frame = CGRectMake(230, 20, 60, 40);
+    self.enterBtn.layer.borderWidth = 1.0f;
+    self.enterBtn.layer.borderColor = [[UIColor redColor]CGColor];
+    self.enterBtn.layer.cornerRadius = 10;
     [self.enterBtn setTitle:@"确定" forState:UIControlStateNormal];
     [self.enterBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.enterBtn];
@@ -114,10 +118,20 @@
     self.pianjiamingLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.pianjiamingLabel];
     
+    UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(70, 300, 180, 30)];
+    [button setBackgroundColor:[UIColor redColor]];
+    [button setTitle:@"查看所有词" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(dicbutton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
     
 }
 
-
+- (void)dicbutton:(id)sender
+{
+    AllDicViewController * alldic = [[AllDicViewController alloc] init];
+    [self.navigationController pushViewController:alldic animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {
