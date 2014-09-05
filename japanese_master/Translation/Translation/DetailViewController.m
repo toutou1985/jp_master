@@ -81,9 +81,29 @@
 
 - (void)netsearch:(id)sender
 {
-    WebViewController * webView = [[WebViewController alloc] init];
-    webView.receiveStr = [_wordsArr objectAtIndex:_row * 3];
-    [self.navigationController pushViewController:webView animated:YES];
+//    WebViewController * webView = [[WebViewController alloc] init];
+//    webView.receiveStr = [_wordsArr objectAtIndex:_row * 3];
+//    [self.navigationController pushViewController:webView animated:YES];
+    NSString *searchWord = [_wordsArr objectAtIndex:_row * 3];
+    NSString *urlString = [NSString stringWithFormat:@"http://fanyi.baidu.com/#jp/zh/%@",searchWord];
+    //NSString * urlString = @"http://fanyi.baidu.com/#jp/zh/生きる";
+    //NSString * urlString = @"https://www.google.co.jp/#q=生きる";
+    //NSString *url2 =[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //NSString *url3 =[url2 stringByReplacingOccurrencesOfString:@"%23" withString:@"#"];
+
+//stringByReplacingOccurrencesOfString:@"" withString:[@"%23"];
+    
+    // ブラウザで開く
+     NSURL *url = [NSURL URLWithString:[[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"%23" withString:@"#"]];
+    //NSURL *url = [NSURL URLWithString:url3];
+    //NSURL *url = [NSURL URLWithString:urlString];//创建URL
+    
+    if(url == nil){
+        NSLog(@"NSURL is nil");
+    } else {
+        [[UIApplication sharedApplication] openURL:url];
+        
+    }
 }
 
 - (void)buttonAction:(id)sender
