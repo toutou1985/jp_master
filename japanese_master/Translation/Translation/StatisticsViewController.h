@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface StatisticsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic,strong) NSMutableArray * sendArr;
 
 @end

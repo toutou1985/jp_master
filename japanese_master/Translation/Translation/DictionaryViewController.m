@@ -53,7 +53,7 @@
         [options setValue:nil forKey:ACOUseSourceFont];
         
         _autoCompleter = [[AutocompletionTableView alloc] initWithTextField:self.enterTF inViewController:self withOptions:options];
-        _autoCompleter.suggestionsDictionary = [NSArray arrayWithObjects:@"hostel",@"caret",@"carrot",@"house",@"horse", nil];
+        _autoCompleter.suggestionsDictionary = [NSArray arrayWithArray:searchResultArr];
     }
     return _autoCompleter;
 }
@@ -63,7 +63,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self setupView];
-    [self.enterTF addTarget:self.autoCompleter action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
+    
 
    }
 
@@ -229,7 +229,7 @@
 
     NSLog(@"change");
     NSLog(@"%@",self.enterTF.text);
-    
+    [self.enterTF addTarget:self.autoCompleter action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
     //DB检索
     // @["生きる","生ビール","生活"]
     

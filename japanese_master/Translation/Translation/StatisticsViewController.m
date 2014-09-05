@@ -10,7 +10,7 @@
 #import "StatisticsCell.h"
 #import "FMDatabase.h"
 #import "Config.h"
-
+#import "DetailViewController.h"
 @interface StatisticsViewController ()
 {
     NSMutableArray *displayWordsArr;
@@ -36,6 +36,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _sendArr = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -200,9 +201,27 @@
     
     cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
     cell.wordLabel.text = displayWordsArr[tIndex][PIAN_JIA_MIN_KEY];
+    NSString * chinese = displayWordsArr[tIndex][CHINESE_MENNS_KEY];
+    NSString * pingjiaming = displayWordsArr[tIndex][PING_JIA_MIN_KEY];
+    [_sendArr addObject:cell.wordLabel.text];
+    [_sendArr addObject:chinese];
+    [_sendArr addObject:pingjiaming];
+    NSLog(@"_sendArr==========%@",_sendArr);
+    NSLog(@"chinese ========= %@",chinese);
+    NSLog(@"pingjiaming ======= %@",pingjiaming);
     cell.reslutLabel.text = [NSString stringWithFormat:@"%@ / %@", displayWordsArr[tIndex][WORD_WRONG_SUM_KEY], displayWordsArr[tIndex][WORD_RIGHT_SUM_KEY]];
     
     return cell;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailViewController * detail = [[DetailViewController alloc] init];
+    detail.wordsArr = _sendArr;
+    detail.row = indexPath.row;
+    NSLog(@"row==========%d",detail.row);
+    [self.navigationController pushViewController:detail animated:YES];
+    
+    
+    
+}
 @end

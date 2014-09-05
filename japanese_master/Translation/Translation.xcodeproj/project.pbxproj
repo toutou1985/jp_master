@@ -13,6 +13,9 @@
 		C1113FA218681965007E8FE4 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1113F9F18681965007E8FE4 /* Icon.png */; };
 		C1113FA318681965007E8FE4 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1113FA018681965007E8FE4 /* Icon@2x.png */; };
 		C12734A018697CAD003D1C24 /* RemenberScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C127349F18697CAD003D1C24 /* RemenberScreenViewController.m */; };
+		C158D8AC19B93E77005A239A /* AutocompletionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C158D8AB19B93E77005A239A /* AutocompletionTableView.m */; };
+		C158D8AF19B94283005A239A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C158D8AE19B94283005A239A /* DetailViewController.m */; };
+		C158D8B219B950FF005A239A /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C158D8B119B950FF005A239A /* WebViewController.m */; };
 		C1A5507E186BF2DF00C57211 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5507D186BF2DF00C57211 /* StatisticsViewController.m */; };
 		C1A55084186BF57400C57211 /* StatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A55083186BF57400C57211 /* StatisticsCell.m */; };
 		C1A55088186C264D00C57211 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A55087186C264D00C57211 /* DictionaryViewController.m */; };
@@ -62,6 +65,12 @@
 		C1113FA018681965007E8FE4 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		C127349E18697CAD003D1C24 /* RemenberScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemenberScreenViewController.h; sourceTree = "<group>"; };
 		C127349F18697CAD003D1C24 /* RemenberScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemenberScreenViewController.m; sourceTree = "<group>"; };
+		C158D8AA19B93E77005A239A /* AutocompletionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutocompletionTableView.h; sourceTree = "<group>"; };
+		C158D8AB19B93E77005A239A /* AutocompletionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutocompletionTableView.m; sourceTree = "<group>"; };
+		C158D8AD19B94283005A239A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		C158D8AE19B94283005A239A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		C158D8B019B950FF005A239A /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		C158D8B119B950FF005A239A /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		C1A5507C186BF2DF00C57211 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		C1A5507D186BF2DF00C57211 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		C1A55082186BF57400C57211 /* StatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsCell.h; sourceTree = "<group>"; };
@@ -166,6 +175,10 @@
 			children = (
 				C1A5507C186BF2DF00C57211 /* StatisticsViewController.h */,
 				C1A5507D186BF2DF00C57211 /* StatisticsViewController.m */,
+				C158D8AD19B94283005A239A /* DetailViewController.h */,
+				C158D8AE19B94283005A239A /* DetailViewController.m */,
+				C158D8B019B950FF005A239A /* WebViewController.h */,
+				C158D8B119B950FF005A239A /* WebViewController.m */,
 				C1A55082186BF57400C57211 /* StatisticsCell.h */,
 				C1A55083186BF57400C57211 /* StatisticsCell.m */,
 			);
@@ -177,6 +190,8 @@
 			children = (
 				C1A55086186C264D00C57211 /* DictionaryViewController.h */,
 				C1A55087186C264D00C57211 /* DictionaryViewController.m */,
+				C158D8AA19B93E77005A239A /* AutocompletionTableView.h */,
+				C158D8AB19B93E77005A239A /* AutocompletionTableView.m */,
 			);
 			name = DictionaryMode;
 			sourceTree = "<group>";
@@ -408,7 +423,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C158D8AC19B93E77005A239A /* AutocompletionTableView.m in Sources */,
 				C1A5507E186BF2DF00C57211 /* StatisticsViewController.m in Sources */,
+				C158D8B219B950FF005A239A /* WebViewController.m in Sources */,
 				C1B980F71861A6CB00730C4A /* FMResultSet.m in Sources */,
 				C1ADE265185EC4DC0054A346 /* PointsCell.m in Sources */,
 				C1ADE262185EAFAF0054A346 /* GamePointsViewController.m in Sources */,
@@ -418,6 +435,7 @@
 				C1B980F51861A6CB00730C4A /* FMDatabaseQueue.m in Sources */,
 				C1B980F41861A6CB00730C4A /* FMDatabasePool.m in Sources */,
 				C1ADE268185EE2FE0054A346 /* PointsTaskViewController.m in Sources */,
+				C158D8AF19B94283005A239A /* DetailViewController.m in Sources */,
 				C1A55088186C264D00C57211 /* DictionaryViewController.m in Sources */,
 				C1ADE231185EA5680054A346 /* AppDelegate.m in Sources */,
 				C1ADE22D185EA5680054A346 /* main.m in Sources */,
