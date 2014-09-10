@@ -107,7 +107,7 @@
 {
     displayWordsArr = [NSMutableArray array];
     
-    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
     NSLog(@"dbpath====================%@",DBPath);
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
     

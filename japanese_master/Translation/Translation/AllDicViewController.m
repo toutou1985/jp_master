@@ -50,7 +50,7 @@
 {
     NSString * tSQL = @"select word.id,word.kanji,word.kana,word.chinese_means from word";
     self.tableArray = [NSMutableArray array];
-    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
     //创建数据库
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
     //判断数据库是否打开
