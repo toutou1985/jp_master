@@ -68,7 +68,7 @@
 {
     pointsTaskArr = [NSMutableArray array];
     
-    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
     
     NSString *tSQL = @"select count(gr.right_num) as count, l.game_status from word w left join game_result gr on gr.word_id = w.id and gr.right_num > 0 left join level l on w.level_id = l.id where w.mission_id = ? and w.level_id = ?";

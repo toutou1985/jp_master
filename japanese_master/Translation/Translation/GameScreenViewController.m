@@ -212,7 +212,7 @@
         {
             NSLog(@"win");
             [self saveScheduleToDB];
-          UIAlertView *nextAlerView = [[UIAlertView alloc]initWithTitle:@"要还是不要" message:@"这关已戳完，进入下关否？" delegate:self cancelButtonTitle:@"要" otherButtonTitles:@"不要", nil];
+          UIAlertView *nextAlerView = [[UIAlertView alloc]initWithTitle:@"成功通关！" message:@"本关已经通过，是否进入下一关？" delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
             nextAlerView.tag = NEXT_POINTS_ALTERVIEW_TAG;
             nextAlerView.delegate = self;
             [nextAlerView show];
@@ -441,7 +441,7 @@
 - (void)loadDataFromDB
 {
     taskArr = [NSMutableArray array];
-    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
     
     NSString *tSQL = @"SELECT w.id as id, w.kanji as kanji, w.kana as kana, w.chinese_means as chinese_means, gr.wrong_num as wrong_num, gr.right_num as right_num FROM word w left join game_result gr on w.id = gr.word_id where w.mission_id = ? and w.level_id = ? and gr.complete_status = 0";
@@ -595,7 +595,7 @@
 {
     BOOL isCompleted = [self taskIsCompleted];
     
-    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
     
     
@@ -800,7 +800,7 @@
 //    NSString * sqlStr = @"<#string#>";
 //    //在这加个判断条件从数据库中提取信息 如果所有的小关都通过了，则开启下一个大关
 //    //获得存放数据库文件的沙盒地址
-//    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+//    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
 //    //创建数据库
 //    FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
 //    //判断数据库是否打开

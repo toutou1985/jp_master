@@ -53,7 +53,7 @@
         [options setValue:[NSNumber numberWithBool:YES] forKey:ACOCaseSensitive];
         [options setValue:nil forKey:ACOUseSourceFont];
         
-        NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+        NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
         _allWords = [[NSMutableArray alloc] init];
         FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
         NSString * pianSql = @"select w.kanji from word as w";
@@ -189,7 +189,7 @@
         NSLog(@"tstr:%@", tEnterStr);
         searchResultArr = [NSMutableArray array];
         
-        NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+        NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
         FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
         
         NSString *tSQL = @"select kanji, kana, chinese_means from word where kanji like ? or kana like ? or chinese_means like ?";

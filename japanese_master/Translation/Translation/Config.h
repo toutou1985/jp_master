@@ -41,7 +41,7 @@ const static NSString *SPELL_LIST = @"あいうえおかきくけこさしすせ
 
 //DB control
 
-#define DB_OPEN_AND_AUTOCLOSE(...) NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"]; \
+#define DB_OPEN_AND_AUTOCLOSE(...) NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"]; \
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];\
     {\
         __VA_ARGS__\

@@ -184,7 +184,7 @@
 {
     displayWordsArr = [NSMutableArray array];
     
-    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
     
     NSString *tSQL = @"select w.id as id, w.kanji as kanji, w.kana as kana, w.chinese_means as chinese_means from level l left join word w on l.id = w.level_id where w.mission_id = ? and w.level_id = ?";

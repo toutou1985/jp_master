@@ -62,7 +62,7 @@
     
     pointsSourceArr = [NSMutableArray array];
     //获得存放数据库文件的沙盒地址
-    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
     //创建数据库
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
     //判断数据库是否打开

@@ -57,7 +57,7 @@
 - (void)initDB
 {
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
     
     BOOL isDir = NO;
     
