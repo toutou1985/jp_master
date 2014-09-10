@@ -12,4 +12,5 @@
 
 @property (nonatomic, copy) NSString *points;
 @property (nonatomic, copy) NSString *task;
+@property (nonatomic,strong) NSString * isclicks;
 @end

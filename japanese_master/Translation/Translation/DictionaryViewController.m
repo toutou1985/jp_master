@@ -104,7 +104,7 @@
    
     
     self.enterBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.enterBtn.frame = CGRectMake(230, 20, 60, 40);
+    self.enterBtn.frame = CGRectMake(230, 60, 60, 40);
     self.enterBtn.layer.borderWidth = 1.0f;
     self.enterBtn.layer.borderColor = [[UIColor redColor]CGColor];
     self.enterBtn.layer.cornerRadius = 10;

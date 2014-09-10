@@ -564,7 +564,7 @@
 	self.japaneseLabel.frame = frame;
 	//self.japaneseLabel.backgroundColor = [UIColor redColor];
 	[UIView beginAnimations:@"testAnimation" context:NULL];
-	[UIView setAnimationDuration:4.0f];
+	[UIView setAnimationDuration:8.0f];
 	[UIView setAnimationCurve:UIViewAnimationCurveLinear];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationRepeatAutoreverses:NO];
@@ -747,11 +747,27 @@
             if (alertView.tag == NEXT_POINTS_ALTERVIEW_TAG)
             {
                 [self saveScheduleToDB];
+                NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                path = [path stringByAppendingString:@"/string.txt"];
+                NSError * error = nil;
+                NSString * str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+                NSLog(@" str ===== %@",str);
+                int b = [str intValue] + 1;
+                NSString * str2 = [NSString stringWithFormat:@"%d",b];
                 
-                
-    
-                
-                
+                NSArray * pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString * path1 = [pathArray lastObject];
+                //给文件起名字
+                path1 = [path1 stringByAppendingString:@"/string.txt"];
+                //想要写入的内容
+                NSString * str1 = str2;
+                NSError * error1 = nil;
+                BOOL judge = [str1 writeToFile:path1 atomically:YES encoding:NSUTF8StringEncoding error:&error1];
+                if (judge) {
+                    NSLog(@"存储chengg");
+                } else {
+                    NSLog(@"error == %@",error1);
+                }
             }
             [self.navigationController popViewControllerAnimated:YES];
         }
