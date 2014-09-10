@@ -53,8 +53,23 @@
         [options setValue:[NSNumber numberWithBool:YES] forKey:ACOCaseSensitive];
         [options setValue:nil forKey:ACOUseSourceFont];
         
+        NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+        _allWords = [[NSMutableArray alloc] init];
+        FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
+        NSString * pianSql = @"select w.kanji from word as w";
+        if (![fmdb open])
+        {
+            NSLog(@"open db lose in game points");
+        }
+        FMResultSet *set = [fmdb executeQuery:pianSql];
+        while ([set next]) {
+            NSString *tPianJiaMin = [set stringForColumn:@"kanji"];
+            [_allWords addObject:tPianJiaMin];
+
+        }
+        [fmdb close];
         _autoCompleter = [[AutocompletionTableView alloc] initWithTextField:self.enterTF inViewController:self withOptions:options];
-        _autoCompleter.suggestionsDictionary = [NSArray arrayWithArray:searchResultArr];
+        _autoCompleter.suggestionsDictionary = [NSArray arrayWithArray:_allWords];
     }
     return _autoCompleter;
 }

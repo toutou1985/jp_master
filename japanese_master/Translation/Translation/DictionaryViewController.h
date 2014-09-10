@@ -10,5 +10,5 @@
 
 @interface DictionaryViewController : UIViewController<UITextFieldDelegate>
 @property (nonatomic,strong)UITableView * tableView;
-
+@property (nonatomic,strong)NSMutableArray * allWords;
 @end

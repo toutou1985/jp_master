@@ -108,6 +108,7 @@
     displayWordsArr = [NSMutableArray array];
     
     NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translaiton.sqlite"];
+    NSLog(@"dbpath====================%@",DBPath);
     FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
     
     NSString *tSQL = @"SELECT gr.word_id as id, gr.right_num as right_num, gr.wrong_num as wrong_num, w.kanji as kanji, w.kana as kana, w.chinese_means as chinese_means FROM game_result gr, word w where w.id = gr.word_id and (gr.right_num != 0 or gr.wrong_num != 0) order by gr.wrong_num desc ,gr.right_num asc";
