@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JHTickerView.h"
 @interface GameScreenViewController : UIViewController<UIGestureRecognizerDelegate, UIAlertViewDelegate>
+{
+    
+	// The ticker
+	JHTickerView *ticker;
+}
 
 @property (nonatomic, copy) NSString *points;
 @property (nonatomic, copy) NSString *task;

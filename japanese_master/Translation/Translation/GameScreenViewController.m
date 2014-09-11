@@ -9,7 +9,7 @@
 #import "GameScreenViewController.h"
 #import "Config.h"
 #import "Tools.h"
-
+#import "JHTickerView.h"
 @interface GameScreenViewController ()
 {
     NSInteger col;
@@ -127,6 +127,17 @@
     
     self.chinaeseLabel.text = keyBordTextDic[PIAN_JIA_MIN_KEY];
     self.japaneseLabel.text = keyBordTextDic[CHINESE_MENNS_KEY];
+    //跑马灯
+    NSArray *tickerStrings = [NSArray arrayWithObjects:self.japaneseLabel.text, nil];
+	
+	ticker = [[JHTickerView alloc] initWithFrame:CGRectMake(10, 270, 300, 50)];
+    [ticker setDirection:JHTickerDirectionLTR];
+	[ticker setTickerStrings:tickerStrings];
+	[ticker setTickerSpeed:60.0f];
+	[ticker start];
+	
+	[self.view addSubview:ticker];
+
     self.japaneseStr = keyBordTextDic[CHINESE_MENNS_KEY];
     
 
@@ -546,7 +557,7 @@
     
     
     
-    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(30, 270, 260,50)];
+    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 270, 300,50)];
     [bgView setBackgroundColor:[UIColor redColor]];
     [self.view addSubview:bgView];
     bgView.clipsToBounds = YES;
@@ -559,21 +570,21 @@
     self.japaneseLabel.textAlignment = NSTextAlignmentCenter;
     //self.japaneseLabel.text = @"";
     self.japaneseLabel.textColor = [UIColor whiteColor];
-    CGRect frame = self.japaneseLabel.frame;
-	frame.origin.x = -360;
-	self.japaneseLabel.frame = frame;
-	//self.japaneseLabel.backgroundColor = [UIColor redColor];
-	[UIView beginAnimations:@"testAnimation" context:NULL];
-	[UIView setAnimationDuration:8.0f];
-	[UIView setAnimationCurve:UIViewAnimationCurveLinear];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationRepeatAutoreverses:NO];
-	[UIView setAnimationRepeatCount:999999];
-	
-	frame = self.japaneseLabel.frame;
-	frame.origin.x = 360;
-	self.japaneseLabel.frame = frame;
-	[UIView commitAnimations];
+//    CGRect frame = self.japaneseLabel.frame;
+//	frame.origin.x = -330;
+//	self.japaneseLabel.frame = frame;
+//	//self.japaneseLabel.backgroundColor = [UIColor redColor];
+//	[UIView beginAnimations:@"testAnimation" context:NULL];
+//	[UIView setAnimationDuration:8.0f];
+//	[UIView setAnimationCurve:UIViewAnimationCurveLinear];
+//	[UIView setAnimationDelegate:self];
+//	[UIView setAnimationRepeatAutoreverses:NO];
+//	[UIView setAnimationRepeatCount:999999];
+//	
+//	frame = self.japaneseLabel.frame;
+//	frame.origin.x = 300;
+//	self.japaneseLabel.frame = frame;
+//	[UIView commitAnimations];
 
    [bgView addSubview:self.japaneseLabel];
     

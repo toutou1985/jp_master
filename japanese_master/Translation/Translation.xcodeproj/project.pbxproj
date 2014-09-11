@@ -18,6 +18,7 @@
 		C158D8B219B950FF005A239A /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C158D8B119B950FF005A239A /* WebViewController.m */; };
 		C158D8C319B9A00F005A239A /* AllDicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C158D8C019B9A00F005A239A /* AllDicViewController.m */; };
 		C158D8C419B9A00F005A239A /* AllWordsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C158D8C219B9A00F005A239A /* AllWordsTableViewCell.m */; };
+		C179EEEA19C1473500CEC1C0 /* JHTickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C179EEE919C1473500CEC1C0 /* JHTickerView.m */; };
 		C1A5507E186BF2DF00C57211 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5507D186BF2DF00C57211 /* StatisticsViewController.m */; };
 		C1A55084186BF57400C57211 /* StatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A55083186BF57400C57211 /* StatisticsCell.m */; };
 		C1A55088186C264D00C57211 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A55087186C264D00C57211 /* DictionaryViewController.m */; };
@@ -77,6 +78,8 @@
 		C158D8C019B9A00F005A239A /* AllDicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllDicViewController.m; sourceTree = "<group>"; };
 		C158D8C119B9A00F005A239A /* AllWordsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllWordsTableViewCell.h; sourceTree = "<group>"; };
 		C158D8C219B9A00F005A239A /* AllWordsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllWordsTableViewCell.m; sourceTree = "<group>"; };
+		C179EEE819C1473500CEC1C0 /* JHTickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTickerView.h; sourceTree = "<group>"; };
+		C179EEE919C1473500CEC1C0 /* JHTickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTickerView.m; sourceTree = "<group>"; };
 		C1A5507C186BF2DF00C57211 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		C1A5507D186BF2DF00C57211 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		C1A55082186BF57400C57211 /* StatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsCell.h; sourceTree = "<group>"; };
@@ -299,6 +302,8 @@
 				C1ADE26A185EF3BE0054A346 /* GameScreenViewController.m */,
 				C1ADE263185EC4DC0054A346 /* PointsCell.h */,
 				C1ADE264185EC4DC0054A346 /* PointsCell.m */,
+				C179EEE819C1473500CEC1C0 /* JHTickerView.h */,
+				C179EEE919C1473500CEC1C0 /* JHTickerView.m */,
 			);
 			name = GameMode;
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 				C1A55088186C264D00C57211 /* DictionaryViewController.m in Sources */,
 				C1ADE231185EA5680054A346 /* AppDelegate.m in Sources */,
 				C1ADE22D185EA5680054A346 /* main.m in Sources */,
+				C179EEEA19C1473500CEC1C0 /* JHTickerView.m in Sources */,
 				C1ADE26B185EF3BE0054A346 /* GameScreenViewController.m in Sources */,
 				C1A55084186BF57400C57211 /* StatisticsCell.m in Sources */,
 				C1B980F31861A6CB00730C4A /* FMDatabaseAdditions.m in Sources */,
