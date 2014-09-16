@@ -38,45 +38,46 @@
 - (void)setupView
 {
     //self.view.backgroundColor = [UIColor colorWithRed:196/255.0 green:213/255.0 blue:53/255.0 alpha:1];
-    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part_c_1"]];
+    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"2-0.png"]];
+    bgIV.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     bgIV.backgroundColor = [UIColor clearColor];
     [self.view addSubview:bgIV];
     
-    UIImageView *logoIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo_big"]];
-    logoIV.backgroundColor = [UIColor clearColor];
-    logoIV.frame = CGRectMake(100, 20, 120, 120);
-    [self.view addSubview:logoIV];
+//    UIImageView *logoIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo_big"]];
+//    logoIV.backgroundColor = [UIColor clearColor];
+//    logoIV.frame = CGRectMake(100, 20, 120, 120);
+//    [self.view addSubview:logoIV];
     
     UIButton *gameModeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [gameModeBtn setTitle:@"游戏模式" forState:UIControlStateNormal];
+    //[gameModeBtn setTitle:@"游戏模式" forState:UIControlStateNormal];
     [gameModeBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     gameModeBtn.tag = GAMEMODE_BTN_TAG;
-    [gameModeBtn setBackgroundImage:[UIImage imageNamed:@"part_c_2"] forState:UIControlStateNormal];
-    gameModeBtn.frame = CGRectMake(80, 170, 160, 40);
+    [gameModeBtn setBackgroundImage:[UIImage imageNamed:@"2-1.png"] forState:UIControlStateNormal];
+    gameModeBtn.frame = CGRectMake(80, 130, 160, 50);
     [self.view addSubview:gameModeBtn];
     
     UIButton *testModeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [testModeBtn setTitle:@"词典模式" forState:UIControlStateNormal];
+    //[testModeBtn setTitle:@"词典模式" forState:UIControlStateNormal];
     [testModeBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     testModeBtn.tag = TESTMODE_BTN_TAG;
-    [testModeBtn setBackgroundImage:[UIImage imageNamed:@"part_c_2"] forState:UIControlStateNormal];
-    testModeBtn.frame = CGRectMake(80, 250, 160, 40);
+    [testModeBtn setBackgroundImage:[UIImage imageNamed:@"2-12"] forState:UIControlStateNormal];
+    testModeBtn.frame = CGRectMake(80, 200, 160, 50);
     [self.view addSubview:testModeBtn];
     
     UIButton *rememberModeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [rememberModeBtn setTitle:@"记忆模式" forState:UIControlStateNormal];
+    //[rememberModeBtn setTitle:@"记忆模式" forState:UIControlStateNormal];
     [rememberModeBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     rememberModeBtn.tag = REMEMBERMODE_BTN_TAG;
-    [rememberModeBtn setBackgroundImage:[UIImage imageNamed:@"part_c_2"] forState:UIControlStateNormal];
-    rememberModeBtn.frame = CGRectMake(80, 330, 160, 40);
+    [rememberModeBtn setBackgroundImage:[UIImage imageNamed:@"2-3"] forState:UIControlStateNormal];
+    rememberModeBtn.frame = CGRectMake(80, 270, 160, 50);
     [self.view addSubview:rememberModeBtn];
     
     UIButton *staticticsBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [staticticsBtn setTitle:@"计数统计" forState:UIControlStateNormal];
+    //[staticticsBtn setTitle:@"计数统计" forState:UIControlStateNormal];
     [staticticsBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     staticticsBtn.tag = STATICTICS_BTN_TAG;
-    [staticticsBtn setBackgroundImage:[UIImage imageNamed:@"part_c_2"] forState:UIControlStateNormal];
-    staticticsBtn.frame = CGRectMake(80, 410, 160, 40);
+    [staticticsBtn setBackgroundImage:[UIImage imageNamed:@"2-4"] forState:UIControlStateNormal];
+    staticticsBtn.frame = CGRectMake(80, 340, 160, 50);
     [self.view addSubview:staticticsBtn];
 }
 
