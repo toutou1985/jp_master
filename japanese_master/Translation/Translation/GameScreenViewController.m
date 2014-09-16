@@ -130,7 +130,7 @@
     //跑马灯
     NSArray *tickerStrings = [NSArray arrayWithObjects:self.japaneseLabel.text, nil];
 	
-	ticker = [[JHTickerView alloc] initWithFrame:CGRectMake(10, 270, 300, 50)];
+	ticker = [[JHTickerView alloc] initWithFrame:CGRectMake(10, 260, 300, 50)];
     [ticker setDirection:JHTickerDirectionLTR];
 	[ticker setTickerStrings:tickerStrings];
 	[ticker setTickerSpeed:60.0f];
@@ -213,7 +213,7 @@
             if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
             {
                 tDic[WORD_IS_COMPLETE_KEY] = @YES;
-                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%ld", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
+                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
                 
                 break;
             }
@@ -281,7 +281,7 @@
             {
                 if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
                 {
-                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%ld", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
+                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
                     break;
                 }
             }
@@ -520,35 +520,42 @@
 - (void)setupView
 {
     
-        UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part_c_1"]];
+    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"5-0"]];
+    bgIV.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:bgIV];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.tag = GAME_SCREEN_BACK_BTN_TAG;
-    [backBtn setTitle:@"<" forState:UIControlStateNormal];
-    backBtn.frame = CGRectMake(0, 20, 40, 40);
+    //[backBtn setTitle:@"<" forState:UIControlStateNormal];
+    backBtn.frame = CGRectMake(10, 20, 40, 30);
+    [backBtn setImage:[UIImage imageNamed:@"3-4.png"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     
     self.noteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.noteBtn.tag = NOTE_BTN_TAG;
-    [self.noteBtn setTitle:@"提示" forState:UIControlStateNormal];
-    [self.noteBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
-    self.noteBtn.frame = CGRectMake(40, 20, 100, 40);
+    //[self.noteBtn setTitle:@"提示" forState:UIControlStateNormal];
+    [self.noteBtn setBackgroundImage:[UIImage imageNamed:@"5-11"] forState:UIControlStateNormal];
+    self.noteBtn.frame = CGRectMake(60, 20, 100, 50);
     [self.noteBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.noteBtn];
     
     self.nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.nextBtn.tag = NEXT_BTN_TAG;
-    [self.nextBtn setTitle:@"下一个" forState:UIControlStateNormal];
-    [self.nextBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
-    self.nextBtn.frame = CGRectMake(180, 20, 100, 40);
+    //[self.nextBtn setTitle:@"下一个" forState:UIControlStateNormal];
+    [self.nextBtn setBackgroundImage:[UIImage imageNamed:@"5-21"] forState:UIControlStateNormal];
+    self.nextBtn.frame = CGRectMake(180, 20, 100, 50);
     [self.nextBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.nextBtn];
     
     self.chinaeseLabel = [[UILabel alloc]init];
     self.chinaeseLabel.frame = CGRectMake(40, 100, 240, 50);
-    self.chinaeseLabel.backgroundColor = [UIColor purpleColor];
+    
+    //self.chinaeseLabel.backgroundColor = [UIColor colorWithRed:157/255.0 green:199/255.0 blue:8/255.0 alpha:1];
+    self.chinaeseLabel.layer.borderColor = [[UIColor colorWithRed:157/255.0 green:199/255.0 blue:8/255.0 alpha:1]CGColor];
+    self.chinaeseLabel.layer.cornerRadius = 10;
+    self.chinaeseLabel.layer.borderWidth = 1.0;
+    self.chinaeseLabel.layer.backgroundColor =[[UIColor colorWithRed:157/255.0 green:199/255.0 blue:8/255.0 alpha:1]CGColor];
     self.chinaeseLabel.font = [UIFont systemFontOfSize:16.0f];
     self.chinaeseLabel.textAlignment = NSTextAlignmentCenter;
     self.chinaeseLabel.textColor = [UIColor whiteColor];
@@ -557,13 +564,12 @@
     
     
     
-    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 270, 300,50)];
-    [bgView setBackgroundColor:[UIColor redColor]];
-    [self.view addSubview:bgView];
+    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 260, 300,50)];
+    //[bgView setBackgroundColor:[UIColor redColor]];
     bgView.clipsToBounds = YES;
 
     self.japaneseLabel = [[UILabel alloc]init];
-    self.japaneseLabel.frame = CGRectMake(0, 10, 360, 30);
+    self.japaneseLabel.frame = CGRectMake(0, 5, 360, 30);
     //self.japaneseLabel.backgroundColor = [UIColor redColor];
     self.japaneseLabel.font = [UIFont systemFontOfSize:15.0f];
     self.japaneseLabel.numberOfLines = 1;
@@ -580,13 +586,14 @@
 //	[UIView setAnimationDelegate:self];
 //	[UIView setAnimationRepeatAutoreverses:NO];
 //	[UIView setAnimationRepeatCount:999999];
-//	
+//
 //	frame = self.japaneseLabel.frame;
 //	frame.origin.x = 300;
 //	self.japaneseLabel.frame = frame;
 //	[UIView commitAnimations];
 
    [bgView addSubview:self.japaneseLabel];
+    [self.view addSubview:bgView];
     
    
     

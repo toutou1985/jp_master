@@ -200,7 +200,7 @@
         tIndex = indexPath.row;
     }
     
-    cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
     cell.wordLabel.text = displayWordsArr[tIndex][PIAN_JIA_MIN_KEY];
 //    NSString * chinese = displayWordsArr[tIndex][CHINESE_MENNS_KEY];
 //    NSString * pingjiaming = displayWordsArr[tIndex][PING_JIA_MIN_KEY];

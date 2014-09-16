@@ -53,7 +53,7 @@
     [gameModeBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     gameModeBtn.tag = GAMEMODE_BTN_TAG;
     [gameModeBtn setBackgroundImage:[UIImage imageNamed:@"2-1.png"] forState:UIControlStateNormal];
-    gameModeBtn.frame = CGRectMake(80, 130, 160, 50);
+    gameModeBtn.frame = CGRectMake(80, 120, 160, 50);
     [self.view addSubview:gameModeBtn];
     
     UIButton *testModeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -69,7 +69,7 @@
     [rememberModeBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     rememberModeBtn.tag = REMEMBERMODE_BTN_TAG;
     [rememberModeBtn setBackgroundImage:[UIImage imageNamed:@"2-3"] forState:UIControlStateNormal];
-    rememberModeBtn.frame = CGRectMake(80, 270, 160, 50);
+    rememberModeBtn.frame = CGRectMake(80, 280, 160, 50);
     [self.view addSubview:rememberModeBtn];
     
     UIButton *staticticsBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -77,7 +77,7 @@
     [staticticsBtn addTarget:self action:@selector(btnAtion:) forControlEvents:UIControlEventTouchUpInside];
     staticticsBtn.tag = STATICTICS_BTN_TAG;
     [staticticsBtn setBackgroundImage:[UIImage imageNamed:@"2-4"] forState:UIControlStateNormal];
-    staticticsBtn.frame = CGRectMake(80, 340, 160, 50);
+    staticticsBtn.frame = CGRectMake(80, 360, 160, 50);
     [self.view addSubview:staticticsBtn];
 }
 

@@ -54,7 +54,7 @@
 
 - (void)layoutSubviews
 {
-    bgIV.frame = CGRectMake(40, 0, CGRectGetWidth(self.frame) - 100, CGRectGetHeight(self.frame) - 30);
+    bgIV.frame = CGRectMake(30, 0, CGRectGetWidth(self.frame) - 60, CGRectGetHeight(self.frame) - 30);
     iconIV.frame = CGRectMake(40, 10, 30, 30);
     self.pointsLable.frame = CGRectMake(100, 0, 300, CGRectGetHeight(self.frame) - 30);
     self.countLable.frame = CGRectMake(CGRectGetWidth(self.frame) - 150, 0, 100, CGRectGetHeight(self.frame) - 30);
@@ -67,20 +67,20 @@
     {
         case kPointsStatusLock:
         {
-            bgIV.image = [UIImage imageNamed:@"part3_1"];
-            iconIV.image = [UIImage imageNamed:@"lock"];
+            bgIV.image = [UIImage imageNamed:@"3-32"];
+            iconIV.image = [UIImage imageNamed:@"3-31"];
         }
             break;
         case kPointsStatusRun:
         {
-            bgIV.image = [UIImage imageNamed:@"part3_2"];
-            iconIV.image = [UIImage imageNamed:@"run"];
+            bgIV.image = [UIImage imageNamed:@"3-22"];
+            iconIV.image = [UIImage imageNamed:@"3-21"];
         }
             break;
         case kPointsStatusComplete:
         {
-            bgIV.image = [UIImage imageNamed:@"part3_3"];
-            iconIV.image = [UIImage imageNamed:@"key"];
+            bgIV.image = [UIImage imageNamed:@"3-12"];
+            iconIV.image = [UIImage imageNamed:@"3-11"];
         }
             break;
         default:

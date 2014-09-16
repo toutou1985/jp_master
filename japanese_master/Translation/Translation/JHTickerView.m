@@ -60,16 +60,17 @@
 
 -(void)setupView {
 	// Set background color to white
-	[self setBackgroundColor:[UIColor redColor]];
+	//[self setBackgroundColor:[UIColor redColor]];
 	
 	// Set a corner radius
 	[self.layer setCornerRadius:5.0f];
 	[self.layer setBorderWidth:2.0f];
-	[self.layer setBorderColor:[UIColor blackColor].CGColor];
+	[self.layer setBorderColor:[UIColor colorWithRed:20/255.0 green:159/255.0 blue:230/255.0 alpha:1].CGColor];
+    [self.layer setBackgroundColor:[UIColor colorWithRed:20/255.0 green:159/255.0 blue:230/255.0 alpha:1].CGColor];
 	[self setClipsToBounds:YES];
 	
 	// Set the font
-	tickerFont = [UIFont fontWithName:@"Marker Felt" size:15.0];
+	tickerFont = [UIFont fontWithName:@"Marker Felt" size:16.0];
 	
 	// Add the label (i'm gonna center it on the view - please feel free to do your own thing)
 	tickerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 4, self.frame.size.width, self.frame.size.height)];

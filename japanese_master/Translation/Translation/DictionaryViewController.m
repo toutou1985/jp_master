@@ -85,13 +85,14 @@
 
 - (void)setupView
 {
-    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part_c_1"]];
+    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"5-0"]];
     bgIV.backgroundColor = [UIColor clearColor];
     [self.view addSubview:bgIV];
     
     self.backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.backBtn.frame = CGRectMake(0, 20, 40, 40);
-    [self.backBtn setTitle:@"<" forState:UIControlStateNormal];
+    self.backBtn.frame = CGRectMake(10, 20, 40, 40);
+    //[self.backBtn setTitle:@"<" forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"3-4.png"] forState:UIControlStateNormal];
     [self.backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backBtn];
     
