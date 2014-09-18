@@ -29,21 +29,23 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorWithRed:196/255.0 green:213/255.0 blue:53/255.0 alpha:1]];
-    NSLog(@"_wordsArr===========%@",_wordsArr);
+    UIImageView * image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [image setImage:[UIImage imageNamed:@"nbg"]];
+    [self.view addSubview:image];
+     NSLog(@"_wordsArr===========%@",_wordsArr);
     NSLog(@"_row===========%d",_row);
     
     self.backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.backBtn.frame = CGRectMake(10, 20, 40, 40);
+    self.backBtn.frame = CGRectMake(10, 20, 40,23);
     self.backBtn.backgroundColor = [UIColor clearColor];
-    [self.backBtn setTitle:@"<" forState:UIControlStateNormal];
-    [self.backBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
+    //[self.backBtn setTitle:@"<" forState:UIControlStateNormal];
+    [self.backBtn setBackgroundImage:[UIImage imageNamed:@"n3-4"] forState:UIControlStateNormal];
     [self.backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backBtn];
 
     
     self.chineseLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 150, 240, 30)];
-    self.chineseLabel.backgroundColor = [UIColor grayColor];
+    self.chineseLabel.backgroundColor = [UIColor colorWithRed:220/255.0 green:0 blue:17/255.0 alpha:1];
     //    self.chineseLabel.text = @"zhongwen ceshi";
     self.chineseLabel.numberOfLines = 0;
     self.chineseLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -53,7 +55,7 @@
     [self.view addSubview:self.chineseLabel];
     
     self.pingjiamingLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 180, 240, 30)];
-    self.pingjiamingLabel.backgroundColor = [UIColor orangeColor];
+    self.pingjiamingLabel.backgroundColor = [UIColor colorWithRed:18/255.0 green:141/255.0 blue:227/255.0 alpha:1];
     //    self.pingjiamingLabel.text = @"pingjiaming ceshi";
     self.pingjiamingLabel.numberOfLines = 0;
     self.pingjiamingLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -62,7 +64,7 @@
     [self.view addSubview:self.pingjiamingLabel];
     
     self.pianjiamingLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 210, 240, 60)];
-    self.pianjiamingLabel.backgroundColor = [UIColor orangeColor];
+    self.pianjiamingLabel.backgroundColor = [UIColor colorWithRed:18/255.0 green:141/255.0 blue:227/255.0 alpha:1];
     //    self.pianjiamingLabel.text = @"pianjiaming ceshi";
     self.pianjiamingLabel.numberOfLines = 0;
     self.pianjiamingLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -72,9 +74,10 @@
     [self.view addSubview:self.pianjiamingLabel];
     
     
-    UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(70, 300, 180, 30)];
-    [button setTitle:@"点击搜索网络发音" forState:UIControlStateNormal];
-    [button setBackgroundColor:[UIColor colorWithRed:136/255.0 green:0 blue:6/255.0 alpha:1]];
+    UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(70, 300, 180, 39)];
+    [button setBackgroundImage:[UIImage imageNamed:@"n7-11"] forState:UIControlStateNormal];
+    //[button setTitle:@"点击搜索网络发音" forState:UIControlStateNormal];
+    //[button setBackgroundColor:[UIColor colorWithRed:136/255.0 green:0 blue:6/255.0 alpha:1]];
     [button addTarget:self action:@selector(netsearch:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 

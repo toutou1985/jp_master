@@ -85,14 +85,14 @@
 
 - (void)setupView
 {
-    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"5-0"]];
+    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nbg"]];
     bgIV.backgroundColor = [UIColor clearColor];
     [self.view addSubview:bgIV];
     
-    self.backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.backBtn.frame = CGRectMake(10, 20, 40, 40);
+    self.backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.backBtn.frame = CGRectMake(10, 20, 40, 23);
     //[self.backBtn setTitle:@"<" forState:UIControlStateNormal];
-    [backBtn setImage:[UIImage imageNamed:@"3-4.png"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"n3-4.png"] forState:UIControlStateNormal];
     [self.backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backBtn];
     
@@ -114,21 +114,21 @@
     [self.view addSubview:self.enterBtn];
     
     self.chineseLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 150, 240, 30)];
-    self.chineseLabel.backgroundColor = [UIColor grayColor];
+    self.chineseLabel.backgroundColor = [UIColor colorWithRed:220/255.0 green:0 blue:17/255.0 alpha:1];
     self.chineseLabel.numberOfLines = 0;
     self.chineseLabel.font = [UIFont systemFontOfSize:14.0f];
     self.chineseLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.chineseLabel];
     
     self.pingjiamingLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 180, 240, 30)];
-    self.pingjiamingLabel.backgroundColor = [UIColor orangeColor];
+    self.pingjiamingLabel.backgroundColor = [UIColor colorWithRed:18/255.0 green:141/255.0 blue:227/255.0 alpha:1];
     self.pingjiamingLabel.numberOfLines = 0;
     self.pingjiamingLabel.font = [UIFont systemFontOfSize:14.0f];
     self.pingjiamingLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.pingjiamingLabel];
     
     self.pianjiamingLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 210, 240, 60)];
-    self.pianjiamingLabel.backgroundColor = [UIColor orangeColor];
+    self.pianjiamingLabel.backgroundColor = [UIColor colorWithRed:18/255.0 green:141/255.0 blue:227/255.0 alpha:1];
     self.pianjiamingLabel.numberOfLines = 0;
     self.pianjiamingLabel.font = [UIFont systemFontOfSize:14.0f];
     self.pianjiamingLabel.textAlignment = NSTextAlignmentCenter;

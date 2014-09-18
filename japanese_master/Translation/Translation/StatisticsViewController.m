@@ -51,7 +51,7 @@
 
 - (void)setupView
 {
-    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part_c_2"]];
+    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nbg"]];
     bgIV.backgroundColor = [UIColor clearColor];
     bgIV.frame = self.view.bounds;
     [self.view addSubview:bgIV];
@@ -78,20 +78,23 @@
     [self.view addSubview:resultTitleLabel];
     
     self.backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.backBtn.frame = CGRectMake(0, 20, 40, 40);
-    [self.backBtn setTitle:@"<" forState:UIControlStateNormal];
+    self.backBtn.frame = CGRectMake(10, 20, 40, 23);
+    //[self.backBtn setTitle:@"<" forState:UIControlStateNormal];
+    [self.backBtn setBackgroundImage:[UIImage imageNamed:@"n3-4"] forState:UIControlStateNormal];
     [self.backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backBtn];
     
     self.desendBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.desendBtn.frame = CGRectMake(20, 70, 80, 44);
-    [self.desendBtn setTitle:@"降序" forState:UIControlStateNormal];
+    self.desendBtn.frame = CGRectMake(20, 70, 80, 61);
+    [self.desendBtn setBackgroundImage:[UIImage imageNamed:@"n9-2"] forState:UIControlStateNormal];
+    //[self.desendBtn setTitle:@"降序" forState:UIControlStateNormal];
     [self.desendBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.desendBtn];
     
     self.asendBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.asendBtn.frame = CGRectMake(100, 70, 80, 44);
-    [self.asendBtn setTitle:@"升序" forState:UIControlStateNormal];
+    self.asendBtn.frame = CGRectMake(120, 70, 80, 61);
+    [self.asendBtn setBackgroundImage:[UIImage imageNamed:@"n9-1"] forState:UIControlStateNormal];
+    //[self.asendBtn setTitle:@"升序" forState:UIControlStateNormal];
     [self.asendBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.asendBtn];
     

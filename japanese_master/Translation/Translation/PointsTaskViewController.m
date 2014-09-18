@@ -41,15 +41,15 @@
     NSError * error = nil;
     NSString * str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
     if ([str isEqualToString:@"1"]) {
-        _firstPoints.backgroundColor = [UIColor blueColor];
+        [_firstPoints setBackgroundImage:[UIImage imageNamed:@"n8-331"] forState:UIControlStateNormal];
     } else if ([str isEqualToString:@"2"]){
-        _secondPoints.backgroundColor = [UIColor blueColor];
+         [_secondPoints setBackgroundImage:[UIImage imageNamed:@"n8-332"] forState:UIControlStateNormal];
     } else if ([str isEqualToString:@"3"]){
-        _thirdPoints.backgroundColor = [UIColor blueColor];
+        [_thirdPoints setBackgroundImage:[UIImage imageNamed:@"n8-333"] forState:UIControlStateNormal];
     } else if ([str isEqualToString:@"4"]){
-        _forthPoints.backgroundColor = [UIColor blueColor];
+         [_forthPoints setBackgroundImage:[UIImage imageNamed:@"n8-334"] forState:UIControlStateNormal];
     } else {
-        _fifthPoints.backgroundColor = [UIColor blueColor];
+         [_fifthPoints setBackgroundImage:[UIImage imageNamed:@"n8-335"] forState:UIControlStateNormal];
     }
         
     NSLog(@" str ===== %@",str);
@@ -190,43 +190,46 @@
         if ([[UIScreen mainScreen] scale] == 2.0) {
             if([UIScreen mainScreen].bounds.size.height == 568){
                 // iPhone retina-4 inch
-                UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"3-0"]];
+                UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nbg"]];
                 bgIV.backgroundColor = [UIColor clearColor];
                 bgIV.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
                 [self.view addSubview:bgIV];
                 
                 UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
                 //[backBtn setTitle:@"<" forState:UIControlStateNormal];
-                [backBtn setImage:[UIImage imageNamed:@"3-4.png"] forState:UIControlStateNormal];
-                backBtn.frame = CGRectMake(10, 20, 40, 30);
+                [backBtn setImage:[UIImage imageNamed:@"n3-4.png"] forState:UIControlStateNormal];
+                backBtn.frame = CGRectMake(10, 35, 40, 23);
                 backBtn.tag = POINT_TASK_BACK_BTN_TAG;
                 [backBtn addTarget:self action:@selector(buttonAciton:) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:backBtn];
                 
-                UILabel *pointsLable = [[UILabel alloc]initWithFrame:CGRectMake(20, 150, 50, 200)];
-                pointsLable.backgroundColor = [UIColor lightGrayColor];
-                pointsLable.numberOfLines = 0;
+                UILabel *pointsLable = [[UILabel alloc]initWithFrame:CGRectMake(70, 20, 180, 55)];
+                UIColor * pointColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"n4-1"]];
+                pointsLable.backgroundColor = pointColor;
+                //pointsLable.numberOfLines = 0;
                 pointsLable.textAlignment = NSTextAlignmentCenter;
-                pointsLable.text = [NSString stringWithFormat:@"第\n%@\n关", self.points];
+                pointsLable.text = [NSString stringWithFormat:@"第%@关", self.points];
                 [self.view addSubview:pointsLable];
                 
-                UIImageView *lineIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part4_8"]];
+                UIImageView *lineIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"n8-2"]];
                 lineIV.backgroundColor = [UIColor clearColor];
-                lineIV.frame = CGRectMake(110, 80, 40, 350);
+                lineIV.frame = CGRectMake(100, 102, 20, 350);
                 [self.view addSubview:lineIV];
                 
                 //first
                 _firstPoints = [UIButton buttonWithType:UIButtonTypeCustom];
-                _firstPoints.frame = CGRectMake(110, 70, 40, 40);
+                _firstPoints.frame = CGRectMake(90,90, 40, 40);
                 [_firstPoints setTitle:@"1" forState:UIControlStateNormal];
-                [_firstPoints setBackgroundImage:[UIImage imageNamed:@"part4_2"] forState:UIControlStateNormal];
+                [_firstPoints setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [_firstPoints setBackgroundImage:[UIImage imageNamed:@"n8-1"] forState:UIControlStateNormal];
                 
                 _firstPoints.tag = FIRST_TASK_BTN_TAG;
                 [_firstPoints addTarget:self action:@selector(buttonAciton:) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:_firstPoints];
                 
-                UILabel * firstPointsCountLable = [[UILabel alloc]initWithFrame:CGRectMake(180, 70, 80, 40)];
-                firstPointsCountLable.backgroundColor = [UIColor greenColor];
+                UILabel * firstPointsCountLable = [[UILabel alloc]initWithFrame:CGRectMake(180, 90, 80, 33)];
+                UIColor * firstColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"n4-21"]];
+                firstPointsCountLable.backgroundColor = firstColor;
                 firstPointsCountLable.text = [NSString stringWithFormat:@"6/%@",(pointsTaskArr[0])[TASK_KEY]];
                 
                 
@@ -248,15 +251,16 @@
                 //[self.view addSubview:_firstPointsNoteBtn];
                 //second
                 _secondPoints = [UIButton buttonWithType:UIButtonTypeCustom];
-                _secondPoints.frame = CGRectMake(105, 150, 50, 50);
+                _secondPoints.frame = CGRectMake(85, 170, 50, 50);
                 [_secondPoints setTitle:@"2" forState:UIControlStateNormal];
-                [_secondPoints setBackgroundImage:[UIImage imageNamed:@"part4_3"] forState:UIControlStateNormal];
+                [_secondPoints setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [_secondPoints setBackgroundImage:[UIImage imageNamed:@"n8-21"] forState:UIControlStateNormal];
                 _secondPoints.tag = SECOND_TASK_BTN_TAG;
                 [_secondPoints addTarget:self action:@selector(buttonAciton:) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:_secondPoints];
                 
-                UILabel * secondPointsCountLable = [[UILabel alloc]initWithFrame:CGRectMake(180, 155, 80, 40)];
-                secondPointsCountLable.backgroundColor = [UIColor greenColor];
+                UILabel * secondPointsCountLable = [[UILabel alloc]initWithFrame:CGRectMake(180, 175, 80, 33)];
+                secondPointsCountLable.backgroundColor = firstColor;
                 secondPointsCountLable.text = [NSString stringWithFormat:@"6/%@",(pointsTaskArr[1])[TASK_KEY]];
                 
                 secondPointsCountLable.textAlignment = NSTextAlignmentCenter;
@@ -273,15 +277,16 @@
                 //    [self.view addSubview:secondPointsNoteBtn];
                 //third
                 _thirdPoints = [UIButton buttonWithType:UIButtonTypeCustom];
-                _thirdPoints.frame = CGRectMake(100, 240, 60, 60);
+                _thirdPoints.frame = CGRectMake(80, 260, 60, 60);
                 [_thirdPoints setTitle:@"3" forState:UIControlStateNormal];
-                [_thirdPoints setBackgroundImage:[UIImage imageNamed:@"part4_4"] forState:UIControlStateNormal];
+                [_thirdPoints setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [_thirdPoints setBackgroundImage:[UIImage imageNamed:@"n8-3"] forState:UIControlStateNormal];
                 _thirdPoints.tag = THIRD_TASK_BTN_TAG;
                 [_thirdPoints addTarget:self action:@selector(buttonAciton:) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:_thirdPoints];
                 
-                UILabel * thirdPointsCountLable = [[UILabel alloc]initWithFrame:CGRectMake(180, 250, 80, 40)];
-                thirdPointsCountLable.backgroundColor = [UIColor greenColor];
+                UILabel * thirdPointsCountLable = [[UILabel alloc]initWithFrame:CGRectMake(180, 270, 80, 33)];
+                thirdPointsCountLable.backgroundColor = firstColor;
                 thirdPointsCountLable.text = [NSString stringWithFormat:@"6/%@",(pointsTaskArr[2])[TASK_KEY]];
                 thirdPointsCountLable.textAlignment = NSTextAlignmentCenter;
                 thirdPointsCountLable.font = [UIFont systemFontOfSize:14.0f];
@@ -297,15 +302,16 @@
                 //    [self.view addSubview:thirdPointsNoteBtn];
                 // forth
                 _forthPoints = [UIButton buttonWithType:UIButtonTypeCustom];
-                _forthPoints.frame = CGRectMake(95, 330, 70, 70);
+                _forthPoints.frame = CGRectMake(75, 350, 70, 70);
                 [_forthPoints setTitle:@"4" forState:UIControlStateNormal];
-                [_forthPoints setBackgroundImage:[UIImage imageNamed:@"part4_5"] forState:UIControlStateNormal];
+                [_forthPoints setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [_forthPoints setBackgroundImage:[UIImage imageNamed:@"n8-4"] forState:UIControlStateNormal];
                 _forthPoints.tag = FORTH_TASK_BTN_TAG;
                 [_forthPoints addTarget:self action:@selector(buttonAciton:) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:_forthPoints];
                 
-                UILabel * forthPointsCountLable = [[UILabel alloc]initWithFrame:CGRectMake(180, 345, 80, 40)];
-                forthPointsCountLable.backgroundColor = [UIColor greenColor];
+                UILabel * forthPointsCountLable = [[UILabel alloc]initWithFrame:CGRectMake(180, 365, 80, 33)];
+                forthPointsCountLable.backgroundColor = firstColor;
                 forthPointsCountLable.text = [NSString stringWithFormat:@"6/%@",(pointsTaskArr[3])[TASK_KEY]];
                 forthPointsCountLable.textAlignment = NSTextAlignmentCenter;
                 forthPointsCountLable.font = [UIFont systemFontOfSize:14.0f];
@@ -321,15 +327,16 @@
                 //    [self.view addSubview:forthPointsNoteBtn];
                 //fifth
                 _fifthPoints = [UIButton buttonWithType:UIButtonTypeCustom];
-                _fifthPoints.frame = CGRectMake(90, 430, 80, 80);
+                _fifthPoints.frame = CGRectMake(70, 450, 80, 80);
                 [_fifthPoints setTitle:@"5" forState:UIControlStateNormal];
-                [_fifthPoints setBackgroundImage:[UIImage imageNamed:@"part4_6"] forState:UIControlStateNormal];
+                [_fifthPoints setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [_fifthPoints setBackgroundImage:[UIImage imageNamed:@"n8-5"] forState:UIControlStateNormal];
                 _fifthPoints.tag = FIFTH_TASK_BTN_TAG;
                 [_fifthPoints addTarget:self action:@selector(buttonAciton:) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:_fifthPoints];
                 
-                UILabel * fifthPointsCountLable = [[UILabel alloc]initWithFrame:CGRectMake(180, 450, 80, 40)];
-                fifthPointsCountLable.backgroundColor = [UIColor greenColor];
+                UILabel * fifthPointsCountLable = [[UILabel alloc]initWithFrame:CGRectMake(180, 470, 80, 33)];
+                fifthPointsCountLable.backgroundColor = firstColor;
                 fifthPointsCountLable.text = [NSString stringWithFormat:@"6/%@",(pointsTaskArr[4])[TASK_KEY]];
                 fifthPointsCountLable.textAlignment = NSTextAlignmentCenter;
                 fifthPointsCountLable.font = [UIFont systemFontOfSize:14.0f];
@@ -358,8 +365,8 @@
                 [backBtn addTarget:self action:@selector(buttonAciton:) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:backBtn];
                 
-                UILabel *pointsLable = [[UILabel alloc]initWithFrame:CGRectMake(20, 150, 50, 200)];
-                pointsLable.backgroundColor = [UIColor lightGrayColor];
+                UILabel *pointsLable = [[UILabel alloc]initWithFrame:CGRectMake(90, 20, 140, 50)];
+                pointsLable.backgroundColor = [UIColor redColor];
                 pointsLable.numberOfLines = 0;
                 pointsLable.textAlignment = NSTextAlignmentCenter;
                 pointsLable.text = [NSString stringWithFormat:@"第\n%@\n关", self.points];
@@ -526,13 +533,13 @@
     {
         gameVC = [[GameScreenViewController alloc]init];
         gameVC.points = self.points;
-        gameVC.task = [NSString stringWithFormat:@"%d", sender.tag - 150 + 1];
+        gameVC.task = [NSString stringWithFormat:@"%ld", sender.tag - 150 + 1];
     }
     else if (modeType == kModeTypeRemeber)
     {
         remenberVC = [[RemenberScreenViewController alloc]init];
         remenberVC.points = self.points;
-        remenberVC.task = [NSString stringWithFormat:@"%d", sender.tag - 150 + 1];
+        remenberVC.task = [NSString stringWithFormat:@"%ld", sender.tag - 150 + 1];
     }
     
     NSInteger pointTaskIndex = -1;

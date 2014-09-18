@@ -124,19 +124,21 @@
                         }];
         return;
     }
-    
-    self.chinaeseLabel.text = keyBordTextDic[PIAN_JIA_MIN_KEY];
-    self.japaneseLabel.text = keyBordTextDic[CHINESE_MENNS_KEY];
-    //跑马灯
-    NSArray *tickerStrings = [NSArray arrayWithObjects:self.japaneseLabel.text, nil];
-	
-	ticker = [[JHTickerView alloc] initWithFrame:CGRectMake(10, 260, 300, 50)];
-    [ticker setDirection:JHTickerDirectionLTR];
-	[ticker setTickerStrings:tickerStrings];
-	[ticker setTickerSpeed:60.0f];
-	[ticker start];
-	
-	[self.view addSubview:ticker];
+    @autoreleasepool {
+        
+        self.chinaeseLabel.text = keyBordTextDic[PIAN_JIA_MIN_KEY];
+        self.japaneseLabel.text = keyBordTextDic[CHINESE_MENNS_KEY];
+        //跑马灯
+        NSArray *tickerStrings = [NSArray arrayWithObjects:self.japaneseLabel.text, nil];
+        
+        ticker = [[JHTickerView alloc] initWithFrame:CGRectMake(10, 260, 300, 50)];
+        [ticker setDirection:JHTickerDirectionLTR];
+        [ticker setTickerStrings:tickerStrings];
+        [ticker setTickerSpeed:60.0f];
+        [ticker start];
+        
+        [self.view addSubview:ticker];
+    }
 
     self.japaneseStr = keyBordTextDic[CHINESE_MENNS_KEY];
     
@@ -213,7 +215,7 @@
             if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
             {
                 tDic[WORD_IS_COMPLETE_KEY] = @YES;
-                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
+                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%ld", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
                 
                 break;
             }
@@ -281,7 +283,7 @@
             {
                 if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
                 {
-                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
+                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%ld", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
                     break;
                 }
             }
@@ -519,81 +521,86 @@
 
 - (void)setupView
 {
-    
-    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"5-0"]];
-    bgIV.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    [self.view addSubview:bgIV];
-    
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.tag = GAME_SCREEN_BACK_BTN_TAG;
-    //[backBtn setTitle:@"<" forState:UIControlStateNormal];
-    backBtn.frame = CGRectMake(10, 20, 40, 30);
-    [backBtn setImage:[UIImage imageNamed:@"3-4.png"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
-    
-    self.noteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.noteBtn.tag = NOTE_BTN_TAG;
-    //[self.noteBtn setTitle:@"提示" forState:UIControlStateNormal];
-    [self.noteBtn setBackgroundImage:[UIImage imageNamed:@"5-11"] forState:UIControlStateNormal];
-    self.noteBtn.frame = CGRectMake(60, 20, 100, 50);
-    [self.noteBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.noteBtn];
-    
-    self.nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.nextBtn.tag = NEXT_BTN_TAG;
-    //[self.nextBtn setTitle:@"下一个" forState:UIControlStateNormal];
-    [self.nextBtn setBackgroundImage:[UIImage imageNamed:@"5-21"] forState:UIControlStateNormal];
-    self.nextBtn.frame = CGRectMake(180, 20, 100, 50);
-    [self.nextBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.nextBtn];
-    
-    self.chinaeseLabel = [[UILabel alloc]init];
-    self.chinaeseLabel.frame = CGRectMake(40, 100, 240, 50);
-    
-    //self.chinaeseLabel.backgroundColor = [UIColor colorWithRed:157/255.0 green:199/255.0 blue:8/255.0 alpha:1];
-    self.chinaeseLabel.layer.borderColor = [[UIColor colorWithRed:157/255.0 green:199/255.0 blue:8/255.0 alpha:1]CGColor];
-    self.chinaeseLabel.layer.cornerRadius = 10;
-    self.chinaeseLabel.layer.borderWidth = 1.0;
-    self.chinaeseLabel.layer.backgroundColor =[[UIColor colorWithRed:157/255.0 green:199/255.0 blue:8/255.0 alpha:1]CGColor];
-    self.chinaeseLabel.font = [UIFont systemFontOfSize:16.0f];
-    self.chinaeseLabel.textAlignment = NSTextAlignmentCenter;
-    self.chinaeseLabel.textColor = [UIColor whiteColor];
-    self.chinaeseLabel.numberOfLines = 0;
-    [self.view addSubview:self.chinaeseLabel];
-    
-    
-    
-    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 260, 300,50)];
-    //[bgView setBackgroundColor:[UIColor redColor]];
-    bgView.clipsToBounds = YES;
+    @autoreleasepool {
+        UIImage * gameImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"5-10" ofType:@"png"]];
+        UIImageView *bgIV = [[UIImageView alloc]initWithImage:gameImage];
+        bgIV.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        [self.view addSubview:bgIV];
+        
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        backBtn.tag = GAME_SCREEN_BACK_BTN_TAG;
+        //[backBtn setTitle:@"<" forState:UIControlStateNormal];
+        backBtn.frame = CGRectMake(10, 30, 40, 20);
+        [backBtn setImage:[UIImage imageNamed:@"3-40.png"] forState:UIControlStateNormal];
+        [backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:backBtn];
+        
+        self.noteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.noteBtn.tag = NOTE_BTN_TAG;
+        //[self.noteBtn setTitle:@"提示" forState:UIControlStateNormal];
+        UIImage * noteImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"5-111" ofType:@"png"]];
+        [self.noteBtn setBackgroundImage:noteImage forState:UIControlStateNormal];
+        self.noteBtn.frame = CGRectMake(60, 20, 100, 50);
+        [self.noteBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.noteBtn];
+        
+        self.nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.nextBtn.tag = NEXT_BTN_TAG;
+        //[self.nextBtn setTitle:@"下一个" forState:UIControlStateNormal];
+        UIImage * nextImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"5-211" ofType:@"png"]];
+        [self.nextBtn setBackgroundImage:nextImage forState:UIControlStateNormal];
+        self.nextBtn.frame = CGRectMake(180, 20, 100, 50);
+        [self.nextBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.nextBtn];
+        
+        self.chinaeseLabel = [[UILabel alloc]init];
+        self.chinaeseLabel.frame = CGRectMake(40, 100, 240, 50);
+        
+        //self.chinaeseLabel.backgroundColor = [UIColor colorWithRed:157/255.0 green:199/255.0 blue:8/255.0 alpha:1];
+        self.chinaeseLabel.layer.borderColor = [[UIColor colorWithRed:157/255.0 green:199/255.0 blue:8/255.0 alpha:1]CGColor];
+        self.chinaeseLabel.layer.cornerRadius = 10;
+        self.chinaeseLabel.layer.borderWidth = 1.0;
+        self.chinaeseLabel.layer.backgroundColor =[[UIColor colorWithRed:157/255.0 green:199/255.0 blue:8/255.0 alpha:1]CGColor];
+        self.chinaeseLabel.font = [UIFont systemFontOfSize:16.0f];
+        self.chinaeseLabel.textAlignment = NSTextAlignmentCenter;
+        self.chinaeseLabel.textColor = [UIColor whiteColor];
+        self.chinaeseLabel.numberOfLines = 0;
+        [self.view addSubview:self.chinaeseLabel];
+        
+        
+        
+        UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 260, 300,50)];
+        //[bgView setBackgroundColor:[UIColor redColor]];
+        bgView.clipsToBounds = YES;
+        
+        self.japaneseLabel = [[UILabel alloc]init];
+        self.japaneseLabel.frame = CGRectMake(0, 5, 360, 30);
+        //self.japaneseLabel.backgroundColor = [UIColor redColor];
+        self.japaneseLabel.font = [UIFont systemFontOfSize:15.0f];
+        self.japaneseLabel.numberOfLines = 1;
+        self.japaneseLabel.textAlignment = NSTextAlignmentCenter;
+        //self.japaneseLabel.text = @"";
+        self.japaneseLabel.textColor = [UIColor whiteColor];
+        //    CGRect frame = self.japaneseLabel.frame;
+        //	frame.origin.x = -330;
+        //	self.japaneseLabel.frame = frame;
+        //	//self.japaneseLabel.backgroundColor = [UIColor redColor];
+        //	[UIView beginAnimations:@"testAnimation" context:NULL];
+        //	[UIView setAnimationDuration:8.0f];
+        //	[UIView setAnimationCurve:UIViewAnimationCurveLinear];
+        //	[UIView setAnimationDelegate:self];
+        //	[UIView setAnimationRepeatAutoreverses:NO];
+        //	[UIView setAnimationRepeatCount:999999];
+        //
+        //	frame = self.japaneseLabel.frame;
+        //	frame.origin.x = 300;
+        //	self.japaneseLabel.frame = frame;
+        //	[UIView commitAnimations];
+        
+        [bgView addSubview:self.japaneseLabel];
+        [self.view addSubview:bgView];
 
-    self.japaneseLabel = [[UILabel alloc]init];
-    self.japaneseLabel.frame = CGRectMake(0, 5, 360, 30);
-    //self.japaneseLabel.backgroundColor = [UIColor redColor];
-    self.japaneseLabel.font = [UIFont systemFontOfSize:15.0f];
-    self.japaneseLabel.numberOfLines = 1;
-    self.japaneseLabel.textAlignment = NSTextAlignmentCenter;
-    //self.japaneseLabel.text = @"";
-    self.japaneseLabel.textColor = [UIColor whiteColor];
-//    CGRect frame = self.japaneseLabel.frame;
-//	frame.origin.x = -330;
-//	self.japaneseLabel.frame = frame;
-//	//self.japaneseLabel.backgroundColor = [UIColor redColor];
-//	[UIView beginAnimations:@"testAnimation" context:NULL];
-//	[UIView setAnimationDuration:8.0f];
-//	[UIView setAnimationCurve:UIViewAnimationCurveLinear];
-//	[UIView setAnimationDelegate:self];
-//	[UIView setAnimationRepeatAutoreverses:NO];
-//	[UIView setAnimationRepeatCount:999999];
-//
-//	frame = self.japaneseLabel.frame;
-//	frame.origin.x = 300;
-//	self.japaneseLabel.frame = frame;
-//	[UIView commitAnimations];
-
-   [bgView addSubview:self.japaneseLabel];
-    [self.view addSubview:bgView];
+    }
     
    
     
@@ -604,7 +611,7 @@
 }
 - (void)move
 {
-    
+     [ticker pause];
     
     
     
@@ -813,8 +820,10 @@
             break;
     }
 }
-//- (void)viewWillDisappear:(BOOL)animated
-//{
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self move];
+    
 //    NSString * sqlStr = @"<#string#>";
 //    //在这加个判断条件从数据库中提取信息 如果所有的小关都通过了，则开启下一个大关
 //    //获得存放数据库文件的沙盒地址
@@ -839,7 +848,7 @@
 //    
 //    
 //    
-//}
+}
 
 #pragma mark
 #pragma mark - UIGesturDelegate

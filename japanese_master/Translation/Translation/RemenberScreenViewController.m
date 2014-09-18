@@ -74,45 +74,45 @@
 
 - (void)setupView
 {
-    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"part_c_1"]];
+    UIImageView *bgIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nbg"]];
     bgIV.backgroundColor = [UIColor clearColor];
     [self.view addSubview:bgIV];
     
     self.backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.backBtn.frame = CGRectMake(0, 20, 40, 40);
+    self.backBtn.frame = CGRectMake(10, 20, 40, 23);
     self.backBtn.backgroundColor = [UIColor clearColor];
-    [self.backBtn setTitle:@"<" forState:UIControlStateNormal];
-    [self.backBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
+    //[self.backBtn setTitle:@"<" forState:UIControlStateNormal];
+    [self.backBtn setBackgroundImage:[UIImage imageNamed:@"n3-4"] forState:UIControlStateNormal];
     [self.backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backBtn];
     
     self.preWordBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.preWordBtn.frame = CGRectMake(70, 20, 60, 40);
-    self.preWordBtn.backgroundColor = [UIColor orangeColor];
-    [self.preWordBtn setTitle:@"上一个" forState:UIControlStateNormal];
-    [self.preWordBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
+    self.preWordBtn.frame = CGRectMake(70, 20, 60, 30);
+    //self.preWordBtn.backgroundColor = [UIColor orangeColor];
+    //[self.preWordBtn setTitle:@"上一个" forState:UIControlStateNormal];
+    [self.preWordBtn setBackgroundImage:[UIImage imageNamed:@"n7-9"] forState:UIControlStateNormal];
     [self.preWordBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.preWordBtn.hidden = YES;
     [self.view addSubview:self.preWordBtn];
     
     self.nextWordBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.nextWordBtn.frame = CGRectMake(150, 20, 60, 40);
-    self.nextWordBtn.backgroundColor = [UIColor orangeColor];
-    [self.nextWordBtn setTitle:@"下一个" forState:UIControlStateNormal];
-    [self.nextWordBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
+    self.nextWordBtn.frame = CGRectMake(180, 20, 60, 30);
+    //self.nextWordBtn.backgroundColor = [UIColor orangeColor];
+    //[self.nextWordBtn setTitle:@"下一个" forState:UIControlStateNormal];
+    [self.nextWordBtn setBackgroundImage:[UIImage imageNamed:@"n7-10"] forState:UIControlStateNormal];
     [self.nextWordBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.nextWordBtn.hidden = YES;
     [self.view addSubview:self.nextWordBtn];
     
     self.pauseBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.pauseBtn.frame = CGRectMake(230, 20, 60, 40);
-    [self.pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
-    [self.pauseBtn setBackgroundImage:[UIImage imageNamed:@"part6_3"] forState:UIControlStateNormal];
+    //[self.pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
+    [self.pauseBtn setBackgroundImage:[UIImage imageNamed:@"n7-8"] forState:UIControlStateNormal];
     [self.pauseBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.pauseBtn];
     
     self.chineseLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 150, 240, 30)];
-    self.chineseLabel.backgroundColor = [UIColor grayColor];
+    self.chineseLabel.backgroundColor = [UIColor colorWithRed:220/255.0 green:0 blue:17/255.0 alpha:1];
 //    self.chineseLabel.text = @"zhongwen ceshi";
     self.chineseLabel.numberOfLines = 0;
     self.chineseLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -120,7 +120,7 @@
     [self.view addSubview:self.chineseLabel];
     
     self.pingjiamingLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 180, 240, 30)];
-    self.pingjiamingLabel.backgroundColor = [UIColor orangeColor];
+    self.pingjiamingLabel.backgroundColor = [UIColor colorWithRed:18/255.0 green:141/255.0 blue:227/255.0 alpha:1];
 //    self.pingjiamingLabel.text = @"pingjiaming ceshi";
     self.pingjiamingLabel.numberOfLines = 0;
     self.pingjiamingLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -128,7 +128,7 @@
     [self.view addSubview:self.pingjiamingLabel];
     
     self.pianjiamingLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 210, 240, 60)];
-    self.pianjiamingLabel.backgroundColor = [UIColor orangeColor];
+    self.pianjiamingLabel.backgroundColor = [UIColor colorWithRed:18/255.0 green:141/255.0 blue:227/255.0 alpha:1];
 //    self.pianjiamingLabel.text = @"pianjiaming ceshi";
     self.pianjiamingLabel.numberOfLines = 0;
     self.pianjiamingLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -158,7 +158,7 @@
     
     self.speedDisplayLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetHeight(self.view.frame) - 35, 80, 30)];
     self.speedDisplayLabel.text = @"1秒/个";
-    self.speedDisplayLabel.backgroundColor = [UIColor orangeColor];
+    self.speedDisplayLabel.backgroundColor = [UIColor colorWithRed:226/255.0 green:58/255.0 blue:88/255.0 alpha:1];
     self.speedDisplayLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.speedDisplayLabel];
     

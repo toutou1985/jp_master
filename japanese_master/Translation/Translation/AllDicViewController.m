@@ -37,8 +37,9 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.backBtn.frame = CGRectMake(0, 20, 40, 40);
-    [self.backBtn setTitle:@"<" forState:UIControlStateNormal];
+    self.backBtn.frame = CGRectMake(10, 20, 40, 23);
+    [self.backBtn setBackgroundImage:[UIImage imageNamed:@"n3-4"] forState:UIControlStateNormal];
+    //[self.backBtn setTitle:@"<" forState:UIControlStateNormal];
     [self.backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backBtn];
     [self setTableView];
@@ -83,7 +84,8 @@
     self.tableView.rowHeight = 50;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-   
+    UIImageView * image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nbg"]];
+    [_tableView setBackgroundView:image];
     [self.view addSubview:self.tableView];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -105,7 +107,7 @@
     NSMutableDictionary * dic = [_tableArray objectAtIndex:indexPath.row];
     cell.pianLabel.text = [dic objectForKey:@"kanji"];
    
-    cell.backgroundColor = [UIColor colorWithRed:196/255.0 green:213/255.0 blue:53/255.0 alpha:1];
+    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.00];
   
     return cell;
     

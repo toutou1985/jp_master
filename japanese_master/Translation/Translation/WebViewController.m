@@ -57,8 +57,7 @@
     // ブラウザで開く
     NSURL *url = [NSURL URLWithString:
                 [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSString *strUrl = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"%@url===============",url);
+       NSLog(@"%@url===============",url);
     //NSURL *url = [NSURL URLWithString:urlString];//创建URL
     if(url == nil){
         NSLog(@"NSURL is nil");
