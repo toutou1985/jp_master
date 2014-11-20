@@ -208,4 +208,8 @@
 {
     return CELL_HEIGHT;
 }
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.view removeFromSuperview];
+}
 @end

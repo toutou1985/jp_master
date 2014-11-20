@@ -124,10 +124,14 @@
                         }];
         return;
     }
-    @autoreleasepool {
+  
         
         self.chinaeseLabel.text = keyBordTextDic[PIAN_JIA_MIN_KEY];
         self.japaneseLabel.text = keyBordTextDic[CHINESE_MENNS_KEY];
+    if (ticker) {
+        [ticker removeFromSuperview];
+        ticker = nil;
+    }
         //跑马灯
         NSArray *tickerStrings = [NSArray arrayWithObjects:self.japaneseLabel.text, nil];
         
@@ -138,7 +142,7 @@
         [ticker start];
         
         [self.view addSubview:ticker];
-    }
+   
 
     self.japaneseStr = keyBordTextDic[CHINESE_MENNS_KEY];
     
@@ -215,7 +219,7 @@
             if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
             {
                 tDic[WORD_IS_COMPLETE_KEY] = @YES;
-                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%ld", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
+                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
                 
                 break;
             }
@@ -522,7 +526,7 @@
 - (void)setupView
 {
     @autoreleasepool {
-        UIImage * gameImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"5-10" ofType:@"png"]];
+        UIImage * gameImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"nbg" ofType:@"png"]];
         UIImageView *bgIV = [[UIImageView alloc]initWithImage:gameImage];
         bgIV.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         [self.view addSubview:bgIV];
@@ -531,14 +535,14 @@
         backBtn.tag = GAME_SCREEN_BACK_BTN_TAG;
         //[backBtn setTitle:@"<" forState:UIControlStateNormal];
         backBtn.frame = CGRectMake(10, 30, 40, 20);
-        [backBtn setImage:[UIImage imageNamed:@"3-40.png"] forState:UIControlStateNormal];
+        [backBtn setImage:[UIImage imageNamed:@"n3-4"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:backBtn];
         
         self.noteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.noteBtn.tag = NOTE_BTN_TAG;
         //[self.noteBtn setTitle:@"提示" forState:UIControlStateNormal];
-        UIImage * noteImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"5-111" ofType:@"png"]];
+        UIImage * noteImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"5-1" ofType:@"png"]];
         [self.noteBtn setBackgroundImage:noteImage forState:UIControlStateNormal];
         self.noteBtn.frame = CGRectMake(60, 20, 100, 50);
         [self.noteBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -547,7 +551,7 @@
         self.nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.nextBtn.tag = NEXT_BTN_TAG;
         //[self.nextBtn setTitle:@"下一个" forState:UIControlStateNormal];
-        UIImage * nextImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"5-211" ofType:@"png"]];
+        UIImage * nextImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"5-21" ofType:@"png"]];
         [self.nextBtn setBackgroundImage:nextImage forState:UIControlStateNormal];
         self.nextBtn.frame = CGRectMake(180, 20, 100, 50);
         [self.nextBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -823,6 +827,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self move];
+    [self.view removeFromSuperview];
     
 //    NSString * sqlStr = @"<#string#>";
 //    //在这加个判断条件从数据库中提取信息 如果所有的小关都通过了，则开启下一个大关
@@ -837,7 +842,7 @@
 //        NSLog(@"open db lose in game points");
 //    }
 //    [fmdb beginTransaction];
-//    
+//    se
 //    
 //    
 //    

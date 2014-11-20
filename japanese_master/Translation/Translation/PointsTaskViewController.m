@@ -197,7 +197,7 @@
                 
                 UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
                 //[backBtn setTitle:@"<" forState:UIControlStateNormal];
-                [backBtn setImage:[UIImage imageNamed:@"n3-4.png"] forState:UIControlStateNormal];
+                [backBtn setImage:[UIImage imageNamed:@"n3-4"] forState:UIControlStateNormal];
                 backBtn.frame = CGRectMake(10, 35, 40, 23);
                 backBtn.tag = POINT_TASK_BACK_BTN_TAG;
                 [backBtn addTarget:self action:@selector(buttonAciton:) forControlEvents:UIControlEventTouchUpInside];
@@ -533,13 +533,13 @@
     {
         gameVC = [[GameScreenViewController alloc]init];
         gameVC.points = self.points;
-        gameVC.task = [NSString stringWithFormat:@"%ld", sender.tag - 150 + 1];
+        gameVC.task = [NSString stringWithFormat:@"%d", sender.tag - 150 + 1];
     }
     else if (modeType == kModeTypeRemeber)
     {
         remenberVC = [[RemenberScreenViewController alloc]init];
         remenberVC.points = self.points;
-        remenberVC.task = [NSString stringWithFormat:@"%ld", sender.tag - 150 + 1];
+        remenberVC.task = [NSString stringWithFormat:@"%d", sender.tag - 150 + 1];
     }
     
     NSInteger pointTaskIndex = -1;
