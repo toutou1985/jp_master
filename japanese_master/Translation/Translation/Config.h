@@ -20,7 +20,11 @@ typedef enum
     kSortTypeAsend,
     kSortTypeDesend,
 }SortType;
-
+typedef enum {
+    transTypeLeft,
+    transTypeRight,
+    transTypeSystem,
+}TransType;
 // ==== game
 #define POINTS_KEY @"mission"
 #define COMPLETED_KEY @"completed"
@@ -55,6 +59,7 @@ const static NSString *SPELL_LIST = @"あいうえおかきくけこさしすせ
 #define TESTMODE_BTN_TAG     101
 #define REMEMBERMODE_BTN_TAG 102
 #define STATICTICS_BTN_TAG   103
+#define SELECTED_TAG         100
 
 //PointsCell
 

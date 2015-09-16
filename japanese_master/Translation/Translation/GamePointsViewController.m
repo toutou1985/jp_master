@@ -50,6 +50,7 @@
 {
     NSString *tSQL = nil;
     
+    NSLog(@"modeYype-----%u",modeType);
 //    if (modeType == kModeTypeGame)
     {
 //        tSQL = @"select m.game_status ,count(gr.complete_status) as count, m.mission_no from  word w  left join  game_result gr on w.id = gr.word_id and gr.right_num > 0  left join mission m on m.id = w.mission_id where m.mission_no = ?";

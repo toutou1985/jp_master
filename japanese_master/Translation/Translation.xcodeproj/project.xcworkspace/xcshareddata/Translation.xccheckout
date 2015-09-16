@@ -10,31 +10,31 @@
 	<string>Translation</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8AB5E158-E0B1-4099-9FC4-EBB9962FB493</key>
-		<string>https://github.com/monstar-lab/near</string>
+		<key>A2A22AC580CB98404E4E118042A7223ED0C70060</key>
+		<string>https://github.com/toutou1985/jp_master.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>japanese_master/Translation/Translation.xcodeproj/project.xcworkspace</string>
+	<string>japanese_master/Translation/Translation.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8AB5E158-E0B1-4099-9FC4-EBB9962FB493</key>
+		<key>A2A22AC580CB98404E4E118042A7223ED0C70060</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/monstar-lab/near</string>
+	<string>https://github.com/toutou1985/jp_master.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8AB5E158-E0B1-4099-9FC4-EBB9962FB493</string>
+	<string>A2A22AC580CB98404E4E118042A7223ED0C70060</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8AB5E158-E0B1-4099-9FC4-EBB9962FB493</string>
+			<string>A2A22AC580CB98404E4E118042A7223ED0C70060</string>
 			<key>IDESourceControlWCCName</key>
-			<string>near</string>
+			<string>jp_master</string>
 		</dict>
 	</array>
 </dict>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RemenberScreenNewViewController">
+            <connections>
+                <outlet property="bgImageview" destination="1DJ-NY-fed" id="T6R-CL-BLK"/>
+                <outlet property="bgScrollview" destination="zOB-Ck-25r" id="TB2-W4-5Yw"/>
+                <outlet property="chineseLabel" destination="4Mg-3L-1yA" id="bAS-aH-zCV"/>
+                <outlet property="japaneseLabel" destination="7ak-tS-hMy" id="s3S-ck-K3M"/>
+                <outlet property="lineView" destination="dwa-xI-ucC" id="jr4-Lo-XJd"/>
+                <outlet property="nextBtn" destination="tcr-kO-UMR" id="XGM-vO-4aa"/>
+                <outlet property="playBtn" destination="hdr-Vl-lSi" id="Qg9-6c-gwV"/>
+                <outlet property="speedSlider" destination="MPB-bZ-d0I" id="aoT-fN-2Hz"/>
+                <outlet property="upBtn" destination="4pB-Cv-gDu" id="MI8-lm-s1A"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zOB-Ck-25r">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bgnewview" translatesAutoresizingMaskIntoConstraints="NO" id="1DJ-NY-fed">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ak-tS-hMy">
+                            <rect key="frame" x="88" y="91" width="145" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwa-xI-ucC">
+                            <rect key="frame" x="0.0" y="129" width="320" height="1"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mg-3L-1yA">
+                            <rect key="frame" x="32" y="129" width="251" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="MPB-bZ-d0I">
+                            <rect key="frame" x="47" y="428" width="210" height="31"/>
+                            <connections>
+                                <action selector="speedSlider:" destination="-1" eventType="valueChanged" id="Ae4-Uh-wSb"/>
+                            </connections>
+                        </slider>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pB-Cv-gDu">
+                            <rect key="frame" x="43" y="383" width="40" height="26"/>
+                            <state key="normal" image="playup">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="upBtn:" destination="-1" eventType="touchUpInside" id="L6m-Pd-8Wj"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-Vl-lSi">
+                            <rect key="frame" x="145" y="381" width="30" height="30"/>
+                            <state key="normal" image="playbtn">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="playBtn:" destination="-1" eventType="touchUpInside" id="5ek-at-Lkx"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcr-kO-UMR">
+                            <rect key="frame" x="234" y="383" width="40" height="26"/>
+                            <state key="normal" image="playnext">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="nextBtn:" destination="-1" eventType="touchUpInside" id="MRt-yn-Y2D"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rabbit" translatesAutoresizingMaskIntoConstraints="NO" id="AQH-80-3Ep">
+                            <rect key="frame" x="16" y="430" width="25" height="25"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wugui" translatesAutoresizingMaskIntoConstraints="NO" id="gQn-a1-Vzx">
+                            <rect key="frame" x="263" y="434" width="35" height="18"/>
+                        </imageView>
+                    </subviews>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="270" y="138"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bgnewview" width="320" height="569"/>
+        <image name="playbtn" width="39" height="40"/>
+        <image name="playnext" width="54" height="32"/>
+        <image name="playup" width="53" height="32"/>
+        <image name="rabbit" width="29" height="29"/>
+        <image name="wugui" width="43" height="22"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

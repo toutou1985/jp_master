@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SelectModeViewController.h"
-
+#import "SelectModeNewViewController.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -18,7 +18,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    SelectModeViewController *vc = [[SelectModeViewController alloc]init];
+    SelectModeNewViewController *vc = [[SelectModeNewViewController alloc]initWithNibName:@"SelectModeNewViewController" bundle:nil];
+    
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     self.window.rootViewController = nav;
@@ -58,6 +59,7 @@
 {
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
+    NSLog(@"dbpath----%@",DBPath);
     
     BOOL isDir = NO;
     

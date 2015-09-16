@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Lgn-cp-DS4" customClass="TitleView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4G-uy-GXw">
+                    <rect key="frame" x="0.0" y="29" width="160" height="148"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="148" id="nFt-oG-RQd"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vx-l4-c8T">
+                    <rect key="frame" x="190" y="40" width="100" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="8tH-pu-sL7"/>
+                        <constraint firstAttribute="height" constant="30" id="fEL-IW-UTr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsQ-Ch-xDK">
+                    <rect key="frame" x="190" y="85" width="108" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="dDA-iW-4en"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEt-VG-EoZ">
+                    <rect key="frame" x="192" y="106" width="106" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="QKF-yD-0oo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="FsQ-Ch-xDK" secondAttribute="trailing" constant="22" id="1MP-s0-oBl"/>
+                <constraint firstItem="V4G-uy-GXw" firstAttribute="top" secondItem="Lgn-cp-DS4" secondAttribute="top" constant="29" id="CMk-Qr-qsE"/>
+                <constraint firstItem="9vx-l4-c8T" firstAttribute="top" secondItem="Lgn-cp-DS4" secondAttribute="top" constant="40" id="NE0-EP-GgM"/>
+                <constraint firstItem="9vx-l4-c8T" firstAttribute="leading" secondItem="V4G-uy-GXw" secondAttribute="trailing" constant="30" id="QSd-Wk-HUW"/>
+                <constraint firstAttribute="trailing" secondItem="9vx-l4-c8T" secondAttribute="trailing" constant="30" id="VBA-lo-OZM"/>
+                <constraint firstItem="V4G-uy-GXw" firstAttribute="leading" secondItem="Lgn-cp-DS4" secondAttribute="leading" id="Wnp-2c-Ug2"/>
+                <constraint firstItem="QEt-VG-EoZ" firstAttribute="top" secondItem="FsQ-Ch-xDK" secondAttribute="bottom" constant="1" id="gV3-yz-Lba"/>
+                <constraint firstItem="FsQ-Ch-xDK" firstAttribute="top" secondItem="9vx-l4-c8T" secondAttribute="bottom" constant="15" id="mJ1-SI-GK4"/>
+                <constraint firstItem="FsQ-Ch-xDK" firstAttribute="leading" secondItem="V4G-uy-GXw" secondAttribute="trailing" constant="30" id="oMS-Y5-EQQ"/>
+                <constraint firstAttribute="trailing" secondItem="QEt-VG-EoZ" secondAttribute="trailing" constant="22" id="wbn-Kq-Nlh"/>
+                <constraint firstItem="QEt-VG-EoZ" firstAttribute="leading" secondItem="V4G-uy-GXw" secondAttribute="trailing" constant="32" id="whH-XW-CQ3"/>
+            </constraints>
+            <connections>
+                <outlet property="allLabel" destination="QEt-VG-EoZ" id="HHr-IG-rH7"/>
+                <outlet property="bigLockLable" destination="9vx-l4-c8T" id="lPT-Pi-Vey"/>
+                <outlet property="circleView" destination="V4G-uy-GXw" id="1dj-DB-f1R"/>
+                <outlet property="passLabel" destination="FsQ-Ch-xDK" id="TSE-d9-Oig"/>
+            </connections>
+            <point key="canvasLocation" x="209" y="340"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

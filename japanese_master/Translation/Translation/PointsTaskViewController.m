@@ -10,6 +10,7 @@
 #import "GameScreenViewController.h"
 #import "RemenberScreenViewController.h"
 
+
 @interface PointsTaskViewController ()
 {
     NSMutableArray *pointsTaskArr;
