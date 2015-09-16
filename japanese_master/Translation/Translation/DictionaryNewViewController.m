@@ -13,6 +13,7 @@
 #import "FMDatabase.h"
 #import "Config.h"
 #import "AutocompletionTableView.h"
+#import "DetailViewController.h"
 @interface DictionaryNewViewController ()
 @property (nonatomic, strong) AutocompletionTableView *autoCompleter;
 @property (nonatomic,strong) NSMutableArray * searchResultArr;
@@ -32,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addObserverToNotification];
     // Do any additional setup after loading the view from its nib.
     UIImageView * titleImageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/320*50)];
     [titleImageview setImage:[UIImage imageNamed:@"navView"]];
@@ -213,7 +215,20 @@
         [self.view bringSubviewToFront:self.allwordsView];
     }
 }
-
+-(void)addObserverToNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLoginInfo:) name:@"detailWord" object:nil];
+}
+-(void)updateLoginInfo:(NSNotification *)notification{
+    NSDictionary *userInfo=notification.userInfo;
+    DetailViewController * detailVC = [[DetailViewController alloc] init];
+    detailVC.wordsArr = [userInfo objectForKey:@"word"];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    
+}
+-(void)dealloc{
+    //移除监听
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

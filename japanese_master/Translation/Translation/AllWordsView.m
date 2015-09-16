@@ -17,6 +17,7 @@
     self.sectionArray = [[NSMutableArray alloc] initWithObjects:@"A",@"K",@"S",@"T",@"N",@"H",@"M",@"",@"Y",@"R",@"W", nil];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.sendArr = [NSMutableArray array];
     
 }
 - (void)loadDataFromDB
@@ -92,10 +93,9 @@
     [self.sendArr addObject:pian];
     [self.sendArr addObject:ping];
     [self.sendArr addObject:chinese];
-    DetailViewController * detailView = [[DetailViewController alloc] init];
-    detailView.wordsArr = self.sendArr;
-    //detailView.row = indexPath.row;
-    self.subviews
+    NSDictionary *userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.sendArr,@"word", nil];
+    NSLog(@"%@",userInfo);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"detailWord" object:self userInfo:userInfo];
 
 
 }
