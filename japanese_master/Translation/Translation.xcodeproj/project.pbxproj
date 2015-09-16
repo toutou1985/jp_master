@@ -34,6 +34,8 @@
 		91A2ED871B9837DD00EDCDA1 /* StatisticsNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A2ED851B9837DD00EDCDA1 /* StatisticsNewViewController.m */; };
 		91A2ED881B9837DD00EDCDA1 /* StatisticsNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A2ED861B9837DD00EDCDA1 /* StatisticsNewViewController.xib */; };
 		91A2ED8B1B98467700EDCDA1 /* StatisticsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A2ED8A1B98467700EDCDA1 /* StatisticsTableViewCell.m */; };
+		91F669E71BA95D6600CC796C /* DetailWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F669E51BA95D6600CC796C /* DetailWordViewController.m */; };
+		91F669E81BA95D6600CC796C /* DetailWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F669E61BA95D6600CC796C /* DetailWordViewController.xib */; };
 		C12734A018697CAD003D1C24 /* RemenberScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C127349F18697CAD003D1C24 /* RemenberScreenViewController.m */; };
 		C128274619CAB8FE005AE832 /* nbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C128274519CAB8FE005AE832 /* nbg.png */; };
 		C128274B19CAB9D0005AE832 /* n2-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C128274719CAB9D0005AE832 /* n2-1.png */; };
@@ -155,6 +157,9 @@
 		91A2ED861B9837DD00EDCDA1 /* StatisticsNewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticsNewViewController.xib; sourceTree = "<group>"; };
 		91A2ED891B98467700EDCDA1 /* StatisticsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsTableViewCell.h; sourceTree = "<group>"; };
 		91A2ED8A1B98467700EDCDA1 /* StatisticsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsTableViewCell.m; sourceTree = "<group>"; };
+		91F669E41BA95D6600CC796C /* DetailWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailWordViewController.h; sourceTree = "<group>"; };
+		91F669E51BA95D6600CC796C /* DetailWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailWordViewController.m; sourceTree = "<group>"; };
+		91F669E61BA95D6600CC796C /* DetailWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailWordViewController.xib; sourceTree = "<group>"; };
 		C127349E18697CAD003D1C24 /* RemenberScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemenberScreenViewController.h; sourceTree = "<group>"; };
 		C127349F18697CAD003D1C24 /* RemenberScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemenberScreenViewController.m; sourceTree = "<group>"; };
 		C128274519CAB8FE005AE832 /* nbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nbg.png; sourceTree = "<group>"; };
@@ -375,6 +380,9 @@
 				91A2ED8A1B98467700EDCDA1 /* StatisticsTableViewCell.m */,
 				C158D8AD19B94283005A239A /* DetailViewController.h */,
 				C158D8AE19B94283005A239A /* DetailViewController.m */,
+				91F669E41BA95D6600CC796C /* DetailWordViewController.h */,
+				91F669E51BA95D6600CC796C /* DetailWordViewController.m */,
+				91F669E61BA95D6600CC796C /* DetailWordViewController.xib */,
 				C158D8B019B950FF005A239A /* WebViewController.h */,
 				C158D8B119B950FF005A239A /* WebViewController.m */,
 				C1A55082186BF57400C57211 /* StatisticsCell.h */,
@@ -609,6 +617,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C128276019CAC6E1005AE832 /* 8-3-80.png in Resources */,
+				91F669E81BA95D6600CC796C /* DetailWordViewController.xib in Resources */,
 				91A2ED881B9837DD00EDCDA1 /* StatisticsNewViewController.xib in Resources */,
 				C134019C19C7DA9C00D5A50D /* 1.png in Resources */,
 				C128274C19CAB9D0005AE832 /* n2-2.png in Resources */,
@@ -692,6 +701,7 @@
 				C1B980F21861A6CB00730C4A /* FMDatabase.m in Sources */,
 				C1ADE255185EA8670054A346 /* SelectModeViewController.m in Sources */,
 				9185C88D1B992DAB00B1BD23 /* THCircularProgressView.m in Sources */,
+				91F669E71BA95D6600CC796C /* DetailWordViewController.m in Sources */,
 				9135A5191BA15B7000DB10C7 /* DictionaryNewViewController.m in Sources */,
 				91A2ED871B9837DD00EDCDA1 /* StatisticsNewViewController.m in Sources */,
 				C12734A018697CAD003D1C24 /* RemenberScreenViewController.m in Sources */,

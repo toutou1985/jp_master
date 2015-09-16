@@ -13,7 +13,7 @@
 #import "FMDatabase.h"
 #import "Config.h"
 #import "AutocompletionTableView.h"
-#import "DetailViewController.h"
+#import "DetailWordViewController.h"
 @interface DictionaryNewViewController ()
 @property (nonatomic, strong) AutocompletionTableView *autoCompleter;
 @property (nonatomic,strong) NSMutableArray * searchResultArr;
@@ -220,7 +220,7 @@
 }
 -(void)updateLoginInfo:(NSNotification *)notification{
     NSDictionary *userInfo=notification.userInfo;
-    DetailViewController * detailVC = [[DetailViewController alloc] init];
+    DetailWordViewController * detailVC = [[DetailWordViewController alloc] init];
     detailVC.wordsArr = [userInfo objectForKey:@"word"];
     [self.navigationController pushViewController:detailVC animated:YES];
     
