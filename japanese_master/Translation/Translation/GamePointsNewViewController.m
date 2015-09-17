@@ -161,6 +161,7 @@ static NSString * cellIdentifier =@"cell";
         cell.missionLabel.textColor = [UIColor grayColor];
         cell.percentLabel.textColor = [UIColor grayColor];
         cell.circleView.progressBackgroundColor = [UIColor colorWithRed:0.96f green:0.96f blue:0.96f alpha:1.00f];
+        cell.circleView.percentage = 0;
     } else if ([gamestatus isEqualToString:@"1"]) {
             cell.missionLabel.textColor = [UIColor colorWithRed:230.0/255.0 green:77/255.0 blue:101/255.0 alpha:1];
             cell.percentLabel.textColor = [UIColor colorWithRed:230.0/255.0 green:77/255.0 blue:101/255.0 alpha:1];

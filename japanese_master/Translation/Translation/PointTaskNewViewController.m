@@ -131,8 +131,9 @@
         cell = [[PointTaskTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentity];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.numLabel.frame = CGRectMake(5, 5, 10, 30);
-    cell.wordsLabel.frame = CGRectMake(20, 5, 60, 30);
+    cell.numLabel.frame = CGRectMake(0, 5, 20, 30);
+    cell.wordsLabel.frame = CGRectMake(25, 5, 60, 30);
+    cell.numLabel.textAlignment = NSTextAlignmentLeft;
     cell.imageview.frame = CGRectMake(kScreenWidth-100, 5, 30, 30);
     cell.arrowView.frame = CGRectMake(kScreenWidth-60, 5, 20, 30);
     cell.numLabel.text = self.pointsTaskArr[indexPath.row][@"levelCount"];
