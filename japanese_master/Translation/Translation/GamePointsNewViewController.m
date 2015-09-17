@@ -17,7 +17,7 @@
 }
 
 @end
-
+static NSString * cellIdentifier =@"cell";
 @implementation GamePointsNewViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -29,7 +29,7 @@
     self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, kScreenWidth/320*50, kScreenWidth, kScreenHeight-kScreenWidth/320*50-80) collectionViewLayout:flowLayout];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    [self.collectionView registerClass:[GameCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    [self.collectionView registerClass:[GameCollectionViewCell class] forCellWithReuseIdentifier:cellIdentifier];
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.collectionView];
 
@@ -53,6 +53,9 @@
     [backbtn setImage:[UIImage imageNamed:@"backbtn"] forState:UIControlStateNormal];
     [backbtn addTarget:self action:@selector(backbtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backbtn];
+    
+    
+
     
     
     UIImageView * reward = [[UIImageView alloc] initWithFrame:CGRectMake((kScreenWidth-283*40/50)/2, kScreenHeight-70, 283*40/50, 40)];
@@ -147,16 +150,17 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    GameCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    [cell sizeToFit];
     NSDictionary * dic1 = [pointsSourceArr objectAtIndex:indexPath.row];
     NSDictionary * dic2 = [pointsMissionStatus objectAtIndex:indexPath.row];
+    GameCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    
+
 
     NSString * gamestatus = [dic1 objectForKey:GAME_STATUS_KEY];
     if ([gamestatus isEqualToString:@"0"]) {
         cell.missionLabel.textColor = [UIColor grayColor];
         cell.percentLabel.textColor = [UIColor grayColor];
+        cell.circleView.progressBackgroundColor = [UIColor colorWithRed:0.96f green:0.96f blue:0.96f alpha:1.00f];
     } else if ([gamestatus isEqualToString:@"1"]) {
             cell.missionLabel.textColor = [UIColor colorWithRed:230.0/255.0 green:77/255.0 blue:101/255.0 alpha:1];
             cell.percentLabel.textColor = [UIColor colorWithRed:230.0/255.0 green:77/255.0 blue:101/255.0 alpha:1];
@@ -169,10 +173,10 @@
             cell.percentLabel.textColor = [UIColor greenColor];
             cell.circleView.progressBackgroundColor = [UIColor colorWithRed:59.0/255.0 green:175/255.0 blue:218/255.0 alpha:1];
 
-        }
+    }
     
-        cell.missionLabel.text = [dic2 objectForKey:@"mission_id"];
-       cell.percentLabel.text = [NSString stringWithFormat:@"%@/%@",[dic2 objectForKey:@"rightcount"],[dic2 objectForKey:@"allcount"]];
+    cell.missionLabel.text = [dic2 objectForKey:@"mission_id"];
+    cell.percentLabel.text = [NSString stringWithFormat:@"%@/%@",[dic2 objectForKey:@"rightcount"],[dic2 objectForKey:@"allcount"]];
     
     
     

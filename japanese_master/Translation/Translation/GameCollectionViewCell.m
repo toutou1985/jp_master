@@ -22,20 +22,20 @@
         self.circleView.centerLabelVisible = YES;
         [self.imgView addSubview:self.circleView];
         
-        self.missionLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)/2-5, 30, 10, 20)];
+        self.missionLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)/2-10, 30, 20, 20)];
        
-        [self.missionLabel setFont:[UIFont systemFontOfSize:20]];
+        [self.missionLabel setFont:[UIFont systemFontOfSize:15]];
         [self.missionLabel setTextAlignment:NSTextAlignmentCenter];
         [self.circleView addSubview:self.missionLabel];
         
-        self.percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)/2-20, 50, 40, 20)];
+        self.percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)/2-30, 50, 60, 20)];
         
         [self.percentLabel setFont:[UIFont systemFontOfSize:12]];
         [self.percentLabel setTextAlignment:NSTextAlignmentCenter];
         [self.circleView addSubview:self.percentLabel];
 
 
-        [self addSubview:self.imgView];
+        [self.contentView addSubview:self.imgView];
         
             }
     return self;

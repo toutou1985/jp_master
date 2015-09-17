@@ -1,4 +1,4 @@
-//
+        //
 //  GameScreenNewViewController.m
 //  Translation
 //
@@ -46,6 +46,9 @@
     [self.view addSubview:backbtn];
 
     [self.japaneseLabel setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"chineseview"]]];
+    
+//    self.chineseLabel.lineBreakMode = UILineBreakModeWordWrap;
+//    self.chineseLabel.numberOfLines = 0;
     
     [self.keyboradView setBackgroundColor:[UIColor redColor]];
     [self loadDataFromDB];
@@ -114,14 +117,6 @@
     self.pointBtn.enabled = NO;
     //    self.japaneseLabel.text = @"";
     
-    if (self.keyboradView)
-    {
-        [self.keyboradView removeFromSuperview];
-        self.keyboradView = nil;
-        
-        [self.inputView removeFromSuperview];
-        self.inputView = nil;
-    }
     
     [self configKeyBordText];
     NSLog(@"self.keyboardview----%f",self.keyboradView.frame.size.width);
@@ -234,7 +229,7 @@
        
     }
     
-    if (self.tempArr.count == 0)//&&[self.levelStatus isEqualToString:@"1"])
+    if (self.tempArr.count == 0&&[self.levelStatus isEqualToString:@"1"])
     {
         NSLog(@"通关");
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"本关已通关" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -242,7 +237,15 @@
         [alert show];
         return;
     }
-    
+    if (self.keyboradView)
+    {
+        [self.keyboradView removeFromSuperview];
+        self.keyboradView = nil;
+        
+        [self.inputView removeFromSuperview];
+        self.inputView = nil;
+    }
+
     //    NSLog(@"temp:%@", taskArr);
     if (self.transType == transTypeRight) {
         wordOrder++;
@@ -305,12 +308,9 @@
         [inputArr addObject:@" "];
     }
     
-    float width = (kScreenWidth-80)/6;
-    CGFloat rate = (kScreenWidth-80 - theCount * width)/(theCount - 1);
-    
-    for (NSInteger i = 0; i < theCount; i++)
-    {
-        UILabel *tempLable = [[UILabel alloc]initWithFrame:CGRectMake(i * (width + rate), 0, width, width)];
+    float width = (kScreenWidth-80)/8;
+    if (theCount == 1) {
+        UILabel * tempLable = [[UILabel alloc] initWithFrame:CGRectMake(self.inputView.frame.size.width/2-width/2, 0, width, width)];
         tempLable.layer.backgroundColor = [[UIColor whiteColor] CGColor];
         //tempLable.layer.borderColor = [[UIColor redColor]CGColor];
         tempLable.layer.borderWidth = 1.0;
@@ -318,13 +318,36 @@
         //tempLable.backgroundColor = [UIColor whiteColor];
         tempLable.textColor = [UIColor colorWithRed:59/255.0 green:175/255.0 blue:218/255.0 alpha:1];
         tempLable.textAlignment = NSTextAlignmentCenter;
-        tempLable.tag = INPUT_FILED_BASE_TAG + i;
+        tempLable.tag = INPUT_FILED_BASE_TAG ;
         tempLable.userInteractionEnabled = YES;
         
         UITapGestureRecognizer *inputCancelGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(inputCancelGesture:)];
         
         [tempLable addGestureRecognizer:inputCancelGesture];
         [self.inputView addSubview:tempLable];
+
+    } else {
+        CGFloat rate = (kScreenWidth-80 - theCount * width)/(theCount - 1);
+        
+        for (NSInteger i = 0; i < theCount; i++)
+        {
+            UILabel *tempLable = [[UILabel alloc]initWithFrame:CGRectMake(i * (width + rate), 0, width, width)];
+            tempLable.layer.backgroundColor = [[UIColor whiteColor] CGColor];
+            //tempLable.layer.borderColor = [[UIColor redColor]CGColor];
+            tempLable.layer.borderWidth = 1.0;
+            tempLable.layer.cornerRadius = 10;
+            //tempLable.backgroundColor = [UIColor whiteColor];
+            tempLable.textColor = [UIColor colorWithRed:59/255.0 green:175/255.0 blue:218/255.0 alpha:1];
+            tempLable.textAlignment = NSTextAlignmentCenter;
+            tempLable.tag = INPUT_FILED_BASE_TAG + i;
+            tempLable.userInteractionEnabled = YES;
+            
+            UITapGestureRecognizer *inputCancelGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(inputCancelGesture:)];
+            
+            [tempLable addGestureRecognizer:inputCancelGesture];
+            [self.inputView addSubview:tempLable];
+        }
+
     }
 }
 

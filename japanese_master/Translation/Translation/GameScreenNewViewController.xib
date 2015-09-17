@@ -37,13 +37,13 @@
                     <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95C-BS-VMh">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95C-BS-VMh">
                     <rect key="frame" x="52" y="128" width="216" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="Bqq-Sa-Rvm"/>
                         <constraint firstAttribute="width" constant="216" id="Huf-5A-b0v"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>

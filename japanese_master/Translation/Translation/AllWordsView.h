@@ -13,5 +13,6 @@
 @property (nonatomic,strong) NSMutableArray * tableArray;
 @property (nonatomic,strong) NSMutableArray * sectionArray;
 @property (nonatomic,strong) NSMutableArray * sendArr;
-- (void)loadDataFromDB;
+@property (nonatomic,strong) NSString * maxLevel;
+
 @end
