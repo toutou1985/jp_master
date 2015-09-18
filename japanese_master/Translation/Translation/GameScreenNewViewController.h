@@ -30,4 +30,5 @@
 @property (nonatomic,strong) NSMutableArray * tempArr;
 @property (nonatomic,strong) NSString * maxLevel_on;
 @property (nonatomic,strong) NSMutableArray * backArr;
+@property (nonatomic,strong) NSMutableArray * wrongArr;
 @end

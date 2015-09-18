@@ -593,6 +593,7 @@
 }
 - (void)backbtn:(id)sender{
     self.backArr = [[NSMutableArray alloc] init];
+    self.wrongArr = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < taskArr.count; i++)
     {
         NSMutableDictionary *tDic = taskArr[i];
@@ -601,11 +602,14 @@
         {
             [self.backArr addObject:[NSString stringWithFormat:@"%ld",(long)i]];
         }
+        if ([tDic[WORD_WRONG_SUM_KEY] boolValue]) {
+            [self.wrongArr addObject:[NSString stringWithFormat:@"%ld",(long)i]];
+        }
         
         
         
     }
-    if (self.backArr.count == taskArr.count) {
+    if (self.backArr.count == taskArr.count&&self.wrongArr.count == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"是否保存记录" message:nil delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
