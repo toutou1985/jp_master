@@ -13,6 +13,7 @@
 #import "StatisticsNewViewController.h"
 #import "DictionaryViewController.h"
 #import "DictionaryNewViewController.h"
+#import "FMDatabase.h"
 @interface SelectModeNewViewController ()
 {
     IBOutlet UIScrollView *bgscrollView;
@@ -32,7 +33,11 @@
     IBOutlet UIButton *dictionaryBtn;
     
     
+    IBOutlet UILabel *gameLabel;
     
+    IBOutlet UILabel *allwordlabel;
+    
+     
     
     
 }
@@ -58,6 +63,40 @@
     UIImageView * titleImageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/320*50)];
     [titleImageview setImage:[UIImage imageNamed:@"navView"]];
     [self.view addSubview:titleImageview];
+    [self loadDataFromDB];
+    
+    
+
+}
+- (void)loadDataFromDB
+{
+    NSString * tql = @"select  allcnt,rightcnt from (select count(id) as allcnt from word) allcnt left join (select count(id)  as rightcnt from word where right_num>0) rightcnt on 1=1";
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"translation.sqlite"];
+    //创建数据库
+    FMDatabase *fmdb = [FMDatabase databaseWithPath:DBPath];
+    //判断数据库是否打开
+    
+    if (![fmdb open])
+    {
+        NSLog(@"open db lose in game points");
+    }
+    FMResultSet * set = [fmdb executeQuery:tql];
+    while ([set next]) {
+        
+        
+        self.allwords = [set stringForColumn:@"allcnt"];
+        self.rightwords = [set stringForColumn:@"rightcnt"];
+        if (!self.rightwords) {
+            self.rightwords = @"0";
+        }
+
+    }
+    [fmdb close];
+    gameLabel.text = [NSString stringWithFormat:@"完成%@项任务",self.rightwords];
+    gameLabel.textColor = [UIColor colorWithRed:106/255.0 green:235/255.0 blue:156/255.0 alpha:1];
+    int unWrite = [self.allwords intValue]-[self.rightwords intValue];
+    allwordlabel.text = [NSString stringWithFormat:@"剩余%@项任务",[NSString stringWithFormat:@"%d",unWrite]];
+    allwordlabel.textColor = [UIColor colorWithRed:238/255.0 green:154/255.0 blue:172/255.0 alpha:1];
 
 }
 - (IBAction)allbtnTapped:(UIButton *)sender {

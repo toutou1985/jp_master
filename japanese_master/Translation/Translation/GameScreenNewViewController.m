@@ -119,6 +119,9 @@
     
     
     [self configKeyBordText];
+    if (self.tempArr.count == 0) {
+        return;
+    }
     NSLog(@"self.keyboardview----%f",self.keyboradView.frame.size.width);
     if (kScreenHeight<500) {
         self.keyboradView = [[UIView alloc]initWithFrame:CGRectMake(0, self.pointBtn.frame.origin.y + self.pointBtn.frame.size.height+20, kScreenWidth, 180)];
@@ -211,7 +214,6 @@
 - (void)configKeyBordText
 {
     //    NSString *tOrder = [NSString stringWithFormat:@"%d", wordOrder];
-    self.inputView.backgroundColor = [UIColor yellowColor];
     keyBordTextDic = nil;
     keyBordTextDic = [NSMutableDictionary dictionary];
     self.tempArr = [NSMutableArray array];
@@ -236,6 +238,8 @@
         alert.tag = 10000;
         [alert show];
         return;
+    } else {
+        
     }
     if (self.keyboradView)
     {
@@ -423,7 +427,7 @@
             if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
             {
                 tDic[WORD_IS_COMPLETE_KEY] = @YES;
-                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%ld", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
+                tDic[WORD_RIGHT_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_RIGHT_SUM_KEY]integerValue] + 1];
                 self.transType = transTypeSystem;
 //                if (self.tempArr.count == 0 &&) {
 //                    <#statements#>
@@ -457,7 +461,7 @@
             {
                 if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
                 {
-                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%ld", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
+                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
                     break;
                 }
             }
@@ -567,6 +571,7 @@
         [fmdb executeUpdate:currentMissionstatus];
         [fmdb executeUpdate:nextMissionstatus];
         
+        
     } else {
         NSString * upNextlevel = [NSString stringWithFormat:@"update level set game_status=1 where mission_id=%@ and level_no=%@",self.mission_id,[NSString stringWithFormat:@"%d",[self.points intValue]+1]];
         [fmdb executeUpdate:upNextlevel];
@@ -574,7 +579,11 @@
     }
     [fmdb commit];
     [fmdb close];
+    if ([self.points isEqualToString:self.maxLevel_on]) {
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1]  animated:YES];
+    } else {
     [self .navigationController popViewControllerAnimated:YES];
+    }
 
 
 }

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SelectModeNewViewController : UIViewController
-
+@property (nonatomic,strong) NSString * allwords;
+@property (nonatomic,strong) NSString * rightwords;
 @end
