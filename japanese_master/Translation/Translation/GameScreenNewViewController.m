@@ -592,9 +592,28 @@
     [self configKeyBord];
 }
 - (void)backbtn:(id)sender{
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"是否保存记录" message:nil delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
-    alert.tag = 10001;
-    [alert show];
+    self.backArr = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < taskArr.count; i++)
+    {
+        NSMutableDictionary *tDic = taskArr[i];
+        
+        if (![tDic[WORD_IS_COMPLETE_KEY] boolValue])
+        {
+            [self.backArr addObject:[NSString stringWithFormat:@"%ld",(long)i]];
+        }
+        
+        
+        
+    }
+    if (self.backArr.count == taskArr.count) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"是否保存记录" message:nil delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];
+        alert.tag = 10001;
+        [alert show];
+
+    }
+
     
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

@@ -29,4 +29,5 @@
 @property (nonatomic,assign) TransType  transType;
 @property (nonatomic,strong) NSMutableArray * tempArr;
 @property (nonatomic,strong) NSString * maxLevel_on;
+@property (nonatomic,strong) NSMutableArray * backArr;
 @end

@@ -83,17 +83,17 @@
         cell = [[StatisticsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentity];
     }
     NSInteger tIndex = 0;
-    if (sortType == kSortTypeDesend)
+    if (sortType == kSortTypeAsend)
     {
         tIndex = displayWordsArr.count - indexPath.row - 1;
     }
-    else if (sortType == kSortTypeAsend)
+    else if (sortType == kSortTypeDesend)
     {
         tIndex = indexPath.row;
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.numberLabel.frame = CGRectMake(0, 0, self.numImageview.frame.size.width, 40);
-    cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
     cell.wordLabel.frame = CGRectMake(self.wordImageview.frame.origin.x, 0, self.wordImageview.frame.size.width, 40);
     cell.wordLabel.text = displayWordsArr[tIndex][PIAN_JIA_MIN_KEY];
     cell.reslutLabel.frame = CGRectMake(self.wrongImageview.frame.origin.x, 0, self.wrongImageview.frame.size.width, 40);
