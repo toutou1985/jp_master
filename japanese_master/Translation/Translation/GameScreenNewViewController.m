@@ -56,6 +56,7 @@
 }
 - (void)loadDataFromDB
 {
+    self.origionArr = [NSMutableArray array];
     taskArr = [NSMutableArray array];
     NSString * tql = [NSString stringWithFormat:@"select id,kanji,kana,chinese_means,right_num from word where mission_id=%@ and level_id=%@",self.mission_id,self.points];
     NSString * maxLevel = [NSString stringWithFormat:@"select max(level_no)as maxlevel from level where mission_id=%@",self.mission_id];
@@ -100,6 +101,7 @@
     }
     
     NSLog(@"load:%@", taskArr);
+    [self.origionArr addObjectsFromArray:taskArr];
     
     [fmdb close];
 
@@ -461,7 +463,7 @@
             {
                 if ([tDic[WORD_ID_KEY] isEqualToString:keyBordTextDic[WORD_ID_KEY]])
                 {
-                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%d", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
+                    tDic[WORD_WRONG_SUM_KEY] = [NSString stringWithFormat:@"%ld", [tDic[WORD_WRONG_SUM_KEY]integerValue] + 1];
                     break;
                 }
             }
@@ -551,11 +553,22 @@
         NSLog(@"save schedule to db lose");
     }
 
+    for (int i = 0; i< taskArr.count; i++) {
+         NSMutableDictionary *tDic = taskArr[i];
+        NSMutableDictionary * oDic = self.origionArr[i];
+        NSString *tWrongSum = [NSString stringWithFormat:@"%d",[tDic[WORD_WRONG_SUM_KEY]intValue] +[oDic[WORD_WRONG_SUM_KEY]intValue]];
+        NSString *tRightSum = [NSString stringWithFormat:@"%d",[tDic[WORD_RIGHT_SUM_KEY]intValue] +[oDic[WORD_RIGHT_SUM_KEY]intValue]];;
+        NSString *tWordID = tDic[WORD_ID_KEY];
+        NSString * upNum = [NSString stringWithFormat:@"update word set right_num=right_num+%@,wrong_num=%@ where id=%@",tRightSum,tWrongSum,tWordID ];
+        [fmdb executeUpdate:upNum];
+
+        
+    }
     for (NSMutableDictionary *tDic in taskArr){
         NSString *tWrongSum = tDic[WORD_WRONG_SUM_KEY];
         NSString *tRightSum = tDic[WORD_RIGHT_SUM_KEY];
         NSString *tWordID = tDic[WORD_ID_KEY];
-        NSString * upNum = [NSString stringWithFormat:@"update word set right_num=%@,wrong_num=%@ where id=%@",tRightSum,tWrongSum,tWordID ];
+        NSString * upNum = [NSString stringWithFormat:@"update word set right_num=right_num+%@,wrong_num=%@ where id=%@",tRightSum,tWrongSum,tWordID ];
         [fmdb executeUpdate:upNum];
 
     }
@@ -633,12 +646,15 @@
                     NSLog(@"save schedule to db lose");
                 }
                 
-                for (NSMutableDictionary *tDic in taskArr){
-                    NSString *tWrongSum = tDic[WORD_WRONG_SUM_KEY];
-                    NSString *tRightSum = tDic[WORD_RIGHT_SUM_KEY];
+                for (int i = 0; i< taskArr.count; i++) {
+                    NSMutableDictionary *tDic = taskArr[i];
+                    NSMutableDictionary * oDic = self.origionArr[i];
+                    NSString *tWrongSum = [NSString stringWithFormat:@"%d",[tDic[WORD_WRONG_SUM_KEY]intValue] +[oDic[WORD_WRONG_SUM_KEY]intValue]];
+                    NSString *tRightSum = [NSString stringWithFormat:@"%d",[tDic[WORD_RIGHT_SUM_KEY]intValue] +[oDic[WORD_RIGHT_SUM_KEY]intValue]];;
                     NSString *tWordID = tDic[WORD_ID_KEY];
-                    NSString * upNum = [NSString stringWithFormat:@"update word set right_num=%@,wrong_num=%@ where id=%@",tRightSum,tWrongSum,tWordID ];
+                    NSString * upNum = [NSString stringWithFormat:@"update word set right_num=right_num+%@,wrong_num=%@ where id=%@",tRightSum,tWrongSum,tWordID ];
                     [fmdb executeUpdate:upNum];
+
                     
                 }
                 //需要判断right_num的个数

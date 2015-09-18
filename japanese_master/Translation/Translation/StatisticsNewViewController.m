@@ -23,12 +23,18 @@
     }
     return self;
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadDataFromDB];
+    [self.tableView reloadData];
 
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self loadDataFromDB];
-    sortType = kSortTypeDesend;
+        sortType = kSortTypeDesend;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -93,7 +99,7 @@
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.numberLabel.frame = CGRectMake(0, 0, self.numImageview.frame.size.width, 40);
-    cell.numberLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
     cell.wordLabel.frame = CGRectMake(self.wordImageview.frame.origin.x, 0, self.wordImageview.frame.size.width, 40);
     cell.wordLabel.text = displayWordsArr[tIndex][PIAN_JIA_MIN_KEY];
     cell.reslutLabel.frame = CGRectMake(self.wrongImageview.frame.origin.x, 0, self.wrongImageview.frame.size.width, 40);
