@@ -63,7 +63,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-Vl-lSi">
                             <rect key="frame" x="145" y="381" width="30" height="30"/>
-                            <state key="normal" image="playbtn">
+                            <state key="normal" image="pause">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -94,7 +94,7 @@
     </objects>
     <resources>
         <image name="bgnewview" width="320" height="569"/>
-        <image name="playbtn" width="39" height="40"/>
+        <image name="pause" width="31" height="40"/>
         <image name="playnext" width="54" height="32"/>
         <image name="playup" width="53" height="32"/>
         <image name="rabbit" width="29" height="29"/>

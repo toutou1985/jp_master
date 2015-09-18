@@ -121,12 +121,12 @@
     if (displayTimer.isValid)
     {
         [displayTimer invalidate];
-        [self.playBtn setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+        [self.playBtn setImage:[UIImage imageNamed:@"playbtn"] forState:UIControlStateNormal];
     }
     else
     {
         displayTimer = [NSTimer scheduledTimerWithTimeInterval:displayInterval target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-        [self.playBtn setImage:[UIImage imageNamed:@"playbtn"] forState:UIControlStateNormal];
+        [self.playBtn setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
     }
 
 }
