@@ -56,15 +56,18 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self loadDataFromDB];
+    
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     UIImageView * titleImageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/320*50)];
     [titleImageview setImage:[UIImage imageNamed:@"navView"]];
     [self.view addSubview:titleImageview];
-    [self loadDataFromDB];
-    
     
 
 }
