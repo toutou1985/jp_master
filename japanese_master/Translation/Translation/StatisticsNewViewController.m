@@ -100,7 +100,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.numberLabel.frame = CGRectMake(0, 0, self.numImageview.frame.size.width, 40);
     cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
-    cell.wordLabel.frame = CGRectMake(self.wordImageview.frame.origin.x, 0, self.wordImageview.frame.size.width, 40);
+    cell.wordLabel.frame = CGRectMake(self.wordImageview.frame.origin.x, 0, self.wordImageview.frame.size.width+30, 40);
     cell.wordLabel.text = displayWordsArr[tIndex][PIAN_JIA_MIN_KEY];
     cell.reslutLabel.frame = CGRectMake(self.wrongImageview.frame.origin.x, 0, self.wrongImageview.frame.size.width, 40);
     NSMutableAttributedString * str =[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ / %@", displayWordsArr[tIndex][WORD_WRONG_SUM_KEY], displayWordsArr[tIndex][WORD_RIGHT_SUM_KEY]]];

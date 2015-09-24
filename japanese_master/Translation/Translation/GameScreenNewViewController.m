@@ -98,6 +98,7 @@
         tDic[WORD_RIGHT_SUM_KEY] = tRightSum;
         
         [taskArr addObject:tDic];
+        self.wrongNum += [tWrongSum intValue];
     }
     
     NSLog(@"load:%@", taskArr);
@@ -605,13 +606,13 @@
             [self.backArr addObject:[NSString stringWithFormat:@"%ld",(long)i]];
         }
         if ([tDic[WORD_WRONG_SUM_KEY] boolValue]) {
-            [self.wrongArr addObject:[NSString stringWithFormat:@"%ld",(long)i]];
+            self.wrongNewnum += [tDic[WORD_WRONG_SUM_KEY] intValue] ;
         }
         
         
         
     }
-    if (self.backArr.count == taskArr.count&&self.wrongArr.count == 0) {
+    if (self.backArr.count == taskArr.count&&self.wrongNewnum == self.wrongNum) {
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"是否保存记录" message:nil delegate:self cancelButtonTitle:@"是" otherButtonTitles:@"否", nil];

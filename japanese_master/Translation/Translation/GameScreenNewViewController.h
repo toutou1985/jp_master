@@ -32,4 +32,6 @@
 @property (nonatomic,strong) NSMutableArray * backArr;
 @property (nonatomic,strong) NSMutableArray * wrongArr;
 @property (nonatomic,strong) NSMutableArray * origionArr;
+@property (nonatomic,assign) int wrongNum;
+@property (nonatomic,assign) int wrongNewnum;
 @end
