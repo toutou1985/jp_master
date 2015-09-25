@@ -1012,6 +1012,8 @@
 		C1ADE24A185EA5680054A346 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: HAITAO LIU (QR5QJ6EUWP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HAITAO LIU (QR5QJ6EUWP)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1028,6 +1030,8 @@
 		C1ADE24B185EA5680054A346 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: HAITAO LIU (QR5QJ6EUWP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HAITAO LIU (QR5QJ6EUWP)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

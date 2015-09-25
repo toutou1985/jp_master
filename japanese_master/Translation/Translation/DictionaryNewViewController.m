@@ -213,6 +213,7 @@
         [self.view bringSubviewToFront:self.searchView];
     } else {
         [self.view bringSubviewToFront:self.allwordsView];
+        [self.searchView.searchTextfield resignFirstResponder];
     }
 }
 -(void)addObserverToNotification{

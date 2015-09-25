@@ -102,7 +102,8 @@
     cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
     cell.wordLabel.frame = CGRectMake(self.wordImageview.frame.origin.x, 0, self.wordImageview.frame.size.width+30, 40);
     cell.wordLabel.text = displayWordsArr[tIndex][PIAN_JIA_MIN_KEY];
-    cell.reslutLabel.frame = CGRectMake(self.wrongImageview.frame.origin.x, 0, self.wrongImageview.frame.size.width, 40);
+    [cell.wordLabel setFont:[UIFont systemFontOfSize:15]];
+    cell.reslutLabel.frame = CGRectMake(self.wrongImageview.frame.origin.x+10, 0, self.wrongImageview.frame.size.width, 40);
     NSMutableAttributedString * str =[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ / %@", displayWordsArr[tIndex][WORD_WRONG_SUM_KEY], displayWordsArr[tIndex][WORD_RIGHT_SUM_KEY]]];
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] range:NSMakeRange(0, [displayWordsArr[tIndex][WORD_WRONG_SUM_KEY] length])];
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] range:NSMakeRange([displayWordsArr[tIndex][WORD_WRONG_SUM_KEY] length], 1)];
